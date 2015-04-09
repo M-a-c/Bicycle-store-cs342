@@ -4,8 +4,6 @@ public class Part extends Item {
 	//Variables
 	private int bulkPrice;
 
-	
-	
 	//constructor
 	public Part(int bulkPrice){
 		super();
