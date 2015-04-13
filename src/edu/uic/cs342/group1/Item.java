@@ -15,9 +15,10 @@ public class Item {
 	private int stock;
 	private boolean lowStock;
 	private boolean outOfStock;
+	private int quantity;
 	
 	//constructor
-	public Item(String name,double price,double promotion,String description,double sqftOccupied,double weight,double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock){
+	public Item(String name,double price,double promotion,String description,double sqftOccupied,double weight,double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock, int q){
 		this.name = name;
 		this.price = price;
 		this.promotion = promotion;
@@ -30,6 +31,7 @@ public class Item {
 		this.stock = stock;
 		this.lowStock = lowStock;
 		this.outOfStock = outOfStock;
+		this.quantity = q;
 
 	}
 	//Default constructor
@@ -46,6 +48,7 @@ public class Item {
 		this.stock = 0;
 		this.lowStock = true;//if everything is 0, these are certainly true
 		this.outOfStock = true;
+		this.quantity = 0;
 	}
 	
 	//All getters and setters.
@@ -54,6 +57,12 @@ public class Item {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public void setQuantity(int q) {
+		this.quantity = q;
+	}
+	public int getQuantity() {
+		return quantity;
 	}
 	public double getPrice() {
 		return price;

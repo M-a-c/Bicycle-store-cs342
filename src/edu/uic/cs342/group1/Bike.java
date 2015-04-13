@@ -15,8 +15,8 @@ public class Bike extends Item{
 		this.speed=0;
 		this.color="";
 	}	
-	public Bike(String name,double price,double promotion,String description,double sqftOccupied,double weight,double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock,int bulkPrice,String type,int speed,String color){
-		super(name,price,promotion,description,sqftOccupied,weight,supplierPrice,reorderNumber,barcode,stock,lowStock,outOfStock);
+	public Bike(String name,double price,double promotion,String description,double sqftOccupied,double weight,double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock,int bulkPrice,String type,int speed,String color, int q){
+		super(name,price,promotion,description,sqftOccupied,weight,supplierPrice,reorderNumber,barcode,stock,lowStock,outOfStock, q);
 		this.type=type;
 		this.speed=speed;
 		this.color=color;

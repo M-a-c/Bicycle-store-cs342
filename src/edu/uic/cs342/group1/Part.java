@@ -15,8 +15,8 @@ public class Part extends Item {
 		this.bulkPrice=1;//one item per the price.
 	}
 	
-	public Part(String name,double price,double promotion,String description,double sqftOccupied,double weight,double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock,int bulkPrice){
-		super(name,price,promotion,description,sqftOccupied,weight,supplierPrice,reorderNumber,barcode,stock,lowStock,outOfStock);
+	public Part(String name,double price,double promotion,String description,double sqftOccupied,double weight,double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock,int bulkPrice, int q){
+		super(name,price,promotion,description,sqftOccupied,weight,supplierPrice,reorderNumber,barcode,stock,lowStock,outOfStock, q);
 		this.bulkPrice = bulkPrice;
 	}
 	
