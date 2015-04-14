@@ -6,27 +6,27 @@ import java.util.ArrayList;
 public class BikeStore {
 	public static void main(String[] args) {
 		
-	       Customer cust;
-	       PrintManager p = new PrintMAnager();
-	       Container containInStock;
-	       Container containOutStock;
-               Container containSoldList;
-	       Container PurchaseList;
-	       Item i;
+	Customer cust;
+	PrintManager p = new PrintMAnager();
+	Container containInStock;
+        Container containOutStock;
+        Container containSoldList;
+        Container PurchaseList;
+        Item i;
 		   
-		String input;
+	String input;
 		
-		System.out.print("Simple Bicyle Store\n"
-				+ "Group #1 \n\n"
-				+ "Project Lead: Bunty Patel\n"
-				+ "Member: Mac Carter, Arkadiusz Pamula, Brad Cortright, Guiquan Liu\n");
+	System.out.print("Simple Bicyle Store\n"
+			+ "Group #1 \n\n"
+			+ "Project Lead: Bunty Patel\n"
+			+ "Member: Mac Carter, Arkadiusz Pamula, Brad Cortright, Guiquan Liu\n");
 	
-		System.out.println("Starting Program");
+	System.out.println("Starting Program");
 		
 		
 	// load file here
         
-		PrintCommand();
+	PrintCommand();
         Scanner s = new Scanner(System.in);
         
         while(s.hasNext())
