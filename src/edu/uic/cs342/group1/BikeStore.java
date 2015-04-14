@@ -7,7 +7,7 @@ public class BikeStore {
 	public static void main(String[] args) {
 		
 	       Customer cust;
-	       PrintManager p = new PrintMAnager();
+	       printManager p = new PrintManager();
 	       Container containInStock;
 	       Container containOutStock;
                Container containSoldList;
