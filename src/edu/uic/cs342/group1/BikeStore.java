@@ -8,12 +8,11 @@ public class BikeStore {
 
         Customer cust;
         printManager p = new PrintManager();
-            Container containInStock;
-            Container containOutStock;
-            Container containSoldList;
-            Container PurchaseList;
-            Item i;
-		   
+        Container containInStock;
+        //Container containOutStock;
+        //Container containSoldList;
+        Container PurchaseList;
+        Item i;
 	String input;
 		
 	System.out.print("Simple Bicyle Store\n"
@@ -22,10 +21,7 @@ public class BikeStore {
 			+ "Member: Mac Carter, Arkadiusz Pamula, Brad Cortright, Guiquan Liu\n");
 	
 	System.out.println("Starting Program");
-		
-		
-	// load file here
-        
+
 	PrintCommand();
         Scanner s = new Scanner(System.in);
         
@@ -33,8 +29,6 @@ public class BikeStore {
         {
         	input = takeInput(s);
         	char ch = input.charAt(0);
-        	
-        	//System.out.println(ch);
         	
         	// Quits the program
         	if(ch == 'q')
@@ -47,13 +41,13 @@ public class BikeStore {
         	else if (ch == 'r')
         	{
         		System.out.println("\nReading file....\n");
-        		readFile();
+        		containInStock = readFile();
         	}
         	//write file
         	else if(ch == 'w')
         	{
         		System.out.println("\nWriting file....\n");
-        		writeFile();
+        		writeFile(containInStock);
         	}
             
             // look up items
@@ -63,7 +57,7 @@ public class BikeStore {
             	
             	String name =  s.nextLine();
             
-            	//i = cust.ItemLookup(name);
+            	i = cust.ItemLookup(name);
             }
             
             //customer check out
@@ -193,13 +187,14 @@ public class BikeStore {
 		return command;
 	}
 	
-	public static void readFile()
+	public static Container readFile()
 	{
 		//need code
-		//get container instock, outstock, sale, purchase..
+		// get containInStock
+		//retrun continer;
 	}
 	
-	public static void writeFile()
+	public static void writeFile(Container c)
 	{
 		//need code
 	}
