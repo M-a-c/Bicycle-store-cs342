@@ -6,23 +6,21 @@ import java.util.ArrayList;
 public class BikeStore {
 	public static void main(String[] args) {
 
-        Customer cust;
-        printManager p = new PrintManager();
-        Container containInStock;
-        //Container containOutStock;
-        //Container containSoldList;
+        Customer cust = new Customer();
+        PrintManager p = new PrintManager();
+        Container containInStock = null;
         Container PurchaseList;
         Item i;
-	String input;
+	    String input;
 		
-	System.out.print("Simple Bicyle Store\n"
-			+ "Group #1 \n\n"
-			+ "Project Lead: Bunty Patel\n"
-			+ "Member: Mac Carter, Arkadiusz Pamula, Brad Cortright, Guiquan Liu\n");
+	    System.out.print("Simple Bicyle Store\n"
+		    	+ "Group #1 \n\n"
+		    	+ "Project Lead: Bunty Patel\n"
+		    	+ "Member: Mac Carter, Arkadiusz Pamula, Brad Cortright, Guiquan Liu\n");
 	
-	System.out.println("Starting Program");
+	    System.out.println("Starting Program");
 
-	PrintCommand();
+	    PrintCommand();
         Scanner s = new Scanner(System.in);
         
         while(s.hasNext())
@@ -37,7 +35,7 @@ public class BikeStore {
                 s.close();
                 return;
             }
-        	//read file 
+        	//****read file not done
         	else if (ch == 'r')
         	{
         		System.out.println("\nReading file....\n");
@@ -76,7 +74,7 @@ public class BikeStore {
             	String name;
             	
             	// Create new ArrayList.
-            	ArrayList<Item> cart = new ArrayList<>();
+            	ArrayList<Item> cart = new ArrayList<Item>();
             	
             	System.out.println("Please enter the item name you want to add to cart, f to finish and proceed to checkout");
             	
@@ -121,12 +119,13 @@ public class BikeStore {
                     			+ " f to finish and proceed to checkout");
                     	
                     	name = s.nextLine();
+            		}
                 }
             	System.out.println("Calculating the final price...");
             	
-            	int fp = cust.finalprice(type, cart);
+            	//int fp = cust.getfinalprice(type, cart);
             
-            	System.out.println("Final price is "+ fp + "comfirm payment? Y - yes, N - No ");
+            	//System.out.println("Final price is "+ fp + "comfirm payment? Y - yes, N - No ");
             	
             	String cfstring = s.next();
             	
@@ -145,12 +144,6 @@ public class BikeStore {
             		
             }
             
-            //print sold list
-            else if(ch == 's')
-            {
-            	//p.printlist(containSoldList);
-            }
-            
             //Print purchase list
             else if(ch == 'p')
             {
@@ -162,12 +155,6 @@ public class BikeStore {
             {
             	//p.printlist(containInStock);
             }
-        	
-        	//print contain out of stock
-            else if(ch =='o')
-            {
-            	//p.printoutofstock(containOutStock);
-            }
             
             else
             {
@@ -177,20 +164,16 @@ public class BikeStore {
             System.out.print ("\nEnter a command: ");
 
         }
-        System.out.println("Quiting Program - EOF reached\n");
-        
-        
+        System.out.println("Quiting Program - EOF reached\n"); 
 	}
 	
 	public static void PrintCommand()
 	{
-	System.out.println("r - Read file");
-	System.out.println("w - Write file");
-	System.out.println("l — Look up items");
+	    System.out.println("r - Read file");
+	    System.out.println("w - Write file");
+	    System.out.println("l — Look up items");
         System.out.println("c - Customer check out");
-        System.out.println("s - Print sold list");
         System.out.println("p - Print purchase list");
-        System.out.println("i — Print contain in stock");
         System.out.println("o - Print contain out of stock");
         System.out.println("q - Quits the program\n");
         System.out.print ("Please enter a command: ");
@@ -204,9 +187,9 @@ public class BikeStore {
 	
 	public static Container readFile()
 	{
-		//need code
+		// need code
 		// get containInStock
-		//retrun continer;
+		return null;
 	}
 	
 	public static void writeFile(Container c)
