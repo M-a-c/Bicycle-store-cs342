@@ -87,12 +87,14 @@ public class BikeStore {
             	{
             		i = cust.ItemLookup(name);
             		
+            		//check if low stock
             		if(i.isLowStock())
             		{
             			
             			System.out.println("Item is low stock, and only "+ i.getQuantity()+" item left");
             		}
             		
+            		//check if out of stock
             		else if (i.isOutOfStock())
             		{
             			System.out.println("Item is out of stock");
