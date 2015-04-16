@@ -131,5 +131,4 @@ public class Item {
 		this.outOfStock = outOfStock;
 	}
 	
-	
 }

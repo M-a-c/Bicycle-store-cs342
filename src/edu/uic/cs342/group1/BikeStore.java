@@ -86,7 +86,7 @@ public class BikeStore {
             	
             	while(n != 'q')
             	{
-            		i = cust.ItemLoopup(name);
+            		i = cust.ItemLookup(name);
                 	System.out.println("Please enter the amount for the item you just added.");
                 	
                 	int amount = s.nextInt();
