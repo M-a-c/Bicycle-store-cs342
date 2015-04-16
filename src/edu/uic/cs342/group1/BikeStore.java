@@ -119,7 +119,6 @@ public class BikeStore {
                     			+ " f to finish and proceed to checkout");
                     	
                     	name = s.nextLine();
-                    	
                 }
             	System.out.println("Calculating the final price...");
             	
