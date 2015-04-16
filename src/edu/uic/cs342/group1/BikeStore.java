@@ -78,13 +78,12 @@ public class BikeStore {
             	// Create new ArrayList.
             	ArrayList<Item> cart = new ArrayList<>();
             	
-            	System.out.println("Please enter the item name you want to add to cart, q to proceed to checkout");
+            	System.out.println("Please enter the item name you want to add to cart, f to finish and proceed to checkout");
             	
             	//take item name
             	name = s.nextLine();
-            	char n = name.charAt(0);
             	
-            	while(n != 'q')
+            	while( name.equals("f"))
             	{
             		i = cust.ItemLookup(name);
                 	System.out.println("Please enter the amount for the item you just added.");
@@ -102,7 +101,7 @@ public class BikeStore {
                 	    System.out.println(i+". "+it.getName() + "X"+ it.getQuantity()+ "  ");
                 	}
                 	
-                	System.out.println("Please enter the item name you want to add to cart, q to proceed to checkout");
+                	System.out.println("Please enter the item name you want to add to cart, f to finish and proceed to checkout");
                 	
                 	name = s.nextLine();
                 	
