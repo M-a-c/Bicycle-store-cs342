@@ -83,29 +83,44 @@ public class BikeStore {
             	//take item name
             	name = s.nextLine();
             	
-            	while( name.equals("f"))
+            	while(! name.equals("f"))
             	{
             		i = cust.ItemLookup(name);
-                	System.out.println("Please enter the amount for the item you just added.");
-                	
-                	int amount = s.nextInt();
-                	
-                	i.setQuantity(amount);
-                	
-                	cart.add(i);
-                	
-                	// Loop through elements.
-                	System.out.println("Subtotal: ");
-                	for (int j = 0; j < cart.size(); j++) {
-                	    Item it = cart.get(j);
-                	    System.out.println(i+". "+it.getName() + "X"+ it.getQuantity()+ "  ");
-                	}
-                	
-                	System.out.println("Please enter the item name you want to add to cart, f to finish and proceed to checkout");
-                	
-                	name = s.nextLine();
-                	
-            	}
+            		
+            		if(i.lowStock())
+            		{
+            			
+            			System.out.println("Item is low stock, and only "+ i.getQuantity()+" item left");
+            		}
+            		
+            		else if (i.isOutOfStock())
+            		{
+            			System.out.println("Item is out of stock");
+            		}
+            		
+            		else
+            		{
+            			System.out.println("Please enter the amount for the item you just added.");
+                    	
+                    	int amount = s.nextInt();
+                    	
+                    	i.setQuantity(amount);
+                    	
+                    	cart.add(i);
+                    	
+                    	// Loop through elements.
+                    	System.out.println("Subtotal: ");
+                    	for (int j = 0; j < cart.size(); j++) {
+                    	    Item it = cart.get(j);
+                    	    System.out.println(i+". "+it.getName() + "X"+ it.getQuantity()+ "  ");
+                    	}
+                    	
+                    	System.out.println("Please enter the item name you want to add to cart"
+                    			+ " f to finish and proceed to checkout");
+                    	
+                    	name = s.nextLine();
+                    	
+                }
             	System.out.println("Calculating the final price...");
             	
             	int fp = cust.finalprice(type, cart);
