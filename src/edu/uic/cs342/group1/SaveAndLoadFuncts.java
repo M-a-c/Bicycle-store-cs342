@@ -3,7 +3,7 @@ import java.io.*;
 
 
 public class Client {
-	
+	//these three functions will be all we need to save/load as text file or saved objects
 	public enum saveType { CUSTOMER, INVENTORY, LOWSTOCK }
 	
 	public static void save(Container items, saveType typeOfSave) throws IOException{
@@ -100,7 +100,7 @@ public class Client {
 	inventory.addItem(bike5);
 	inventory.addItem(part6);
 	
-	
+	//testing saving/loading--all good
 	Bike bikeTest = (Bike)inventory.getItem(0);
 	Part partTest = (Part)inventory.getItem(5);
 	System.out.println("Bike test: " + bikeTest.getColor());
