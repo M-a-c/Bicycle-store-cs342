@@ -2,7 +2,9 @@ import java.util.*;
 import java.io.Serializable;
 public class Container implements Aggregate, Serializable {
 
-	private static final long serialVersionUID = 1L;//added for warning for Serializable interface;UML change?
+	//added for warning for Serializable interface;UML change? without it there's warnings but compiles and runs fine
+	//with it works fine and no warnings, but I'm not sure it's need or what issues can arise with this
+	//private static final long serialVersionUID = 1805979079439615130L;
 	private ArrayList<Item> list = new ArrayList<Item>();
 	
 
