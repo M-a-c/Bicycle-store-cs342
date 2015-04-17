@@ -1,7 +1,9 @@
-package edu.uic.cs342.group1;
+import java.io.Serializable;
+public class Bike extends Item implements Serializable{//serialziable added for saving; UML change needed?
 
-public class Bike extends Item{
-	
+	private static final long serialVersionUID = 1L;//added for warning for Serializable interface;UML change?
+
+
 	public Bike(String type,int speed,String color){
 		super();
 		this.type=type;
@@ -14,9 +16,11 @@ public class Bike extends Item{
 		this.type="";
 		this.speed=0;
 		this.color="";
-	}	
-	public Bike(String name,double price,double promotion,String description,double sqftOccupied,double weight,double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock,int bulkPrice,String type,int speed,String color, int q){
-		super(name,price,promotion,description,sqftOccupied,weight,supplierPrice,reorderNumber,barcode,stock,lowStock,outOfStock, q);
+	}																												//added
+	public Bike(String name,double price,double promotion,String description,double sqftOccupied,double weight,String supplierName, 
+			    double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock,String type,int speed,
+			    String color, int q){
+		super(name,price,promotion,description,sqftOccupied,weight,supplierName, supplierPrice,reorderNumber,barcode,stock,lowStock,outOfStock, q);
 		this.type=type;
 		this.speed=speed;
 		this.color=color;

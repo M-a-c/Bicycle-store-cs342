@@ -1,9 +1,11 @@
-package edu.uic.cs342.group1;
 import java.util.*;
+import java.io.Serializable;
+public class Container implements Aggregate, Serializable {
 
-public class Container implements Aggregate {
+	private static final long serialVersionUID = 1L;//added for warning for Serializable interface;UML change?
 	private ArrayList<Item> list = new ArrayList<Item>();
 	
+
 	@Override
 	public Iterator createIterator() {
 		Iterator i = new ItemIterator();
@@ -36,6 +38,8 @@ public class Container implements Aggregate {
 	private class ItemIterator implements Iterator {
 		private int currentIndex = 0;
 		
+		public int getCurr(){return currentIndex;}//Added; change UML
+		public void resetCurr(){currentIndex = 0;}//added; change UML
 		@Override
 		public boolean hasNext() {
 			return currentIndex < list.size();

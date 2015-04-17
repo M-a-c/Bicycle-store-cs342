@@ -1,4 +1,3 @@
-package edu.uic.cs342.group1;
 
 public class Item {
 	
@@ -9,6 +8,7 @@ public class Item {
 	private String description;
 	private double sqftOccupied;
 	private double weight;
+	private String supplierName;//added;UML diagram needs updating
 	private double supplierPrice;
 	private String reorderNumber;
 	private int barcode;
@@ -17,14 +17,16 @@ public class Item {
 	private boolean outOfStock;
 	private int quantity;
 	
-	//constructor
-	public Item(String name,double price,double promotion,String description,double sqftOccupied,double weight,double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock, int q){
+	//constructor																									//added
+	public Item(String name,double price,double promotion,String description,double sqftOccupied,double weight,String supplierName, 
+			    double supplierPrice, String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock, int q){
 		this.name = name;
 		this.price = price;
 		this.promotion = promotion;
 		this.description = description;
 		this.sqftOccupied = sqftOccupied;
 		this.weight = weight;
+		this.supplierName = supplierName;//added UML?
 		this.supplierPrice = supplierPrice;
 		this.reorderNumber = reorderNumber;
 		this.barcode = barcode;
@@ -93,6 +95,12 @@ public class Item {
 	}
 	public void setWeight(double weight) {
 		this.weight = weight;
+	}
+	public String getSupplierName() {
+		return supplierName;
+	}
+	public void setSupplierName(String newName) {
+		this.supplierName = newName;
 	}
 	public double getSupplierPrice() {
 		return supplierPrice;
