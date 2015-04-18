@@ -1,5 +1,7 @@
+package edu.uic.cs342.group1;
 import java.util.*;
 import java.io.Serializable;
+
 public class Container implements Aggregate, Serializable {
 
 	//added for warning for Serializable interface;UML change? without it there's warnings but compiles and runs fine
