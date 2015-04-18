@@ -72,6 +72,7 @@ public class BikeStore {
             	int type = s.nextInt();
             	//item name
             	String name;
+            	double subtotal =0.0;
             	
             	// Create new ArrayList.
             	ArrayList<Item> cart = new ArrayList<Item>();
@@ -109,11 +110,14 @@ public class BikeStore {
                     	cart.add(i);
                     	
                     	// Loop through elements.
-                    	System.out.println("Subtotal: ");
+                    	
+                    	System.out.println("Items: ");
                     	for (int j = 0; j < cart.size(); j++) {
                     	    Item it = cart.get(j);
+                    	    subtotal = subtotal+ it.getPrice()*it.getQuantity();
                     	    System.out.println(i+". "+it.getName() + "X"+ it.getQuantity()+ "  ");
                     	}
+                    	System.out.println("Subtotal: $ "+ subtotal);
                     	
                     	System.out.println("Please enter the item name you want to add to cart"
                     			+ " f to finish and proceed to checkout");
@@ -123,9 +127,9 @@ public class BikeStore {
                 }
             	System.out.println("Calculating the final price...");
             	
-            	//int fp = cust.getfinalprice(type, cart);
+            	double fp = cust.getPrice(subtotal);
             
-            	//System.out.println("Final price is "+ fp + "comfirm payment? Y - yes, N - No ");
+            	System.out.println("Final price is "+ fp + "comfirm payment? Y - yes, N - No ");
             	
             	String cfstring = s.next();
             	
