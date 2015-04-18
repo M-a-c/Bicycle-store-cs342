@@ -16,13 +16,14 @@ public class BikeStore {
 	public enum saveType { CUSTOMER, INVENTORY, LOWSTOCK }
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
-  
+
         Customer cust = new Customer();
         PrintManager p = new PrintManager();
         Container inventory = new Container();
         Container receipt = new Container();
+        Container PurchaseList;
         Item i;
-	String input;
+	    String input;
 		
 	    System.out.print("Simple Bicyle Store\n"
 		    	+ "Group #1 \n\n"
@@ -153,7 +154,6 @@ public class BikeStore {
                     	
                     	System.out.println("Items: ");
                     	
-                    	//********** need to get size of container list*********
                     	for (int j = 0; j < cart.size(); j++) {
                     	    Item it = cart.getItem(j);
                     	    subtotal = subtotal+ it.getPrice()*it.getQuantity();
@@ -180,11 +180,27 @@ public class BikeStore {
             	
             	if(cf == 'Y')
             	{
-            		//update inventory 
-            		//********NOT DONE  need size of container list also********
+            		for (int j = 0; j < cart.size(); j++) {
+                	    Item it = cart.getItem(j);
+                	    int barcode = it.getBarcode();
+                	    
+                	    for (int k = 0; j < cart.size(); j++) {
+                    	    Item oldit = inventory.getItem(j);
+                    	    
+                    	    int oldbarcode =oldit.getBarcode();
+                    	    
+                    	    if(barcode == oldbarcode)
+                    	    {
+                    	    	int quantity = oldit.getQuantity();
+                    	    	oldit.setQuantity(quantity - it.getQuantity());
+                    	    }
+                    	    
+                    	}
+                	    
+                	}
             		
             		//save inventory
-            		save(cart, saveType.INVENTORY);
+            		save(inventory, saveType.INVENTORY);
             		
             		//save cart
             		save(cart, saveType.CUSTOMER);
