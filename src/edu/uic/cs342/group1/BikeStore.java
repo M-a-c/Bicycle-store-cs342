@@ -16,14 +16,13 @@ public class BikeStore {
 	public enum saveType { CUSTOMER, INVENTORY, LOWSTOCK }
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
-
+  
         Customer cust = new Customer();
         PrintManager p = new PrintManager();
         Container inventory = new Container();
         Container receipt = new Container();
-        Container PurchaseList;
         Item i;
-	    String input;
+	String input;
 		
 	    System.out.print("Simple Bicyle Store\n"
 		    	+ "Group #1 \n\n"
