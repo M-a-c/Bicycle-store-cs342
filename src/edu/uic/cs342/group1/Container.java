@@ -32,6 +32,10 @@ public class Container implements Aggregate, Serializable {
 		return list.get(index);
 	}
 	
+	public int size() {
+		return list.size();
+	}
+	
 	public double calcRecommendedPrice(int index) {
 		double purchasePrice = list.get(index).getSupplierPrice();
 		//assuming it costs $0.01/sqft to store + $5 to hold the item in the store

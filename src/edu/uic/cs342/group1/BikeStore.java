@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import edu.uic.cs342.group1.Client.saveType;
+import edu.uic.cs342.group1.SaveAndLoadFuncts.saveType;
 
 public class BikeStore {
 	//these three functions will be all we need to save/load as text file or saved objects

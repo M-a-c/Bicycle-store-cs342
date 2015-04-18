@@ -1,8 +1,7 @@
-
+package edu.uic.cs342.group1;
 import java.io.*;
 
-
-public class Client {
+public class SaveAndLoadFuncts {
 	//these three functions will be all we need to save/load as text file or saved objects
 	public enum saveType { CUSTOMER, INVENTORY, LOWSTOCK }
 	
