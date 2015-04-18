@@ -51,7 +51,7 @@ public class BikeStore {
             // look up items
             else if(ch == 'l')
             {
-            	System.out.print("Please eneter item bar code you want to look up: ");
+            	System.out.print("Please enter item bar code you want to look up: ");
             	
             	String name =  s.nextLine();
             
