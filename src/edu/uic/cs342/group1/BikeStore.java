@@ -390,13 +390,17 @@ public class BikeStore {
         	//print items in inventory whose items are low in stock, by finding it and printing info
             else if(ch =='s')
             {
+            	Container temp = new Container();
             	Iterator inventIter = inventory.createIterator();
             	while (inventIter.hasNext()) {
             		Item stockItem = inventIter.next();
             		if (stockItem.isLowStock()) {
+            			temp.addItem(stockItem);
             			stockItem.printInfo();
             		}
             	}
+            	save(temp, saveType.LOWSTOCK);
+
             }
         	//print items in inventory whose items are out of stock by finding it and printing info
             else if(ch =='o')
