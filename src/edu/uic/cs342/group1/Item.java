@@ -58,10 +58,9 @@ public class Item {
 		System.out.println("Supplier Price: " + this.supplierPrice);
 		System.out.println("Reorder Number: " + this.reorderNumber);
 		System.out.println("Barcode: " + this.barcode);
-		System.out.println("Stock: " + this.stock);
 		System.out.println("Low Stock: " + (stock < 5));
 		System.out.println("Out of Stock: " + (stock == 0));
-		System.out.println("Quantity: " + this.quantity);
+		System.out.println("Stock: " + this.stock);
 	}
 	//All getters and setters.
 	public String getName() {

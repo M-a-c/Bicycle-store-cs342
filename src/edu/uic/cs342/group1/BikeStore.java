@@ -80,6 +80,114 @@ public class BikeStore {
                 s.close();
                 return;
             }
+        	// Add new inventory
+        	else if (ch == 'a') {
+        		System.out.println("Are you adding new inventory or restocking existing inventory?");
+            	System.out.println("     1. Adding New  ");
+            	System.out.println("     2. Restocking  ");
+            	System.out.print("Please choose a number: ");
+            	
+            	//customer type
+            	int type = s.nextInt();
+            	
+            	if (type == 1) {
+            		System.out.println("Enter Name:");
+            		String name = s.next();
+            		System.out.println("Enter Promotional Discount:");
+            		double promo = s.nextDouble();
+            		System.out.println("Enter Description (new/used):");
+            		String description = s.next();
+            		System.out.println("Enter Square Footage:");
+            		double sqft = s.nextDouble();
+            		System.out.println("Enter Weight:");
+            		double weight = s.nextDouble();
+            		System.out.println("Enter Supplier Name:");
+            		String supp = s.next();
+            		System.out.println("Enter Supplier Price:");
+            		double sp = s.nextDouble();
+            		System.out.println("Enter reorder #:");
+            		String ron = s.next();
+            		System.out.println("Enter barcode #");
+            		int bc = s.nextInt();
+            		System.out.println("Enter quantity on hand:");
+            		int qty = s.nextInt();
+            		
+            		System.out.println("Bike or Part? B - Bike, P - Part");
+            		String ans = s.next();
+            		ans.toUpperCase();
+            		char an = ans.charAt(0);
+            		
+            		if (an == 'B' || an == 'b') {
+            			System.out.println("Enter type of bike:");
+            			String btype = s.next();
+            			System.out.println("Enter speed of bike:");
+            			int speed = s.nextInt();
+            			System.out.println("Enter color of bike:");
+            			String color = s.next();
+            			
+                		double recPrice = calcRecommendedPrice(sp, sqft);
+                		System.out.println("Recommended Retail Price is: " + recPrice);
+                		System.out.println("Accept this price? Y - yes N - no (enter own price)");
+                		ans = s.next();
+                		ans.toUpperCase();
+                		an = ans.charAt(0);
+                		
+                		if (an == 'N' || an == 'n') {
+                			System.out.println("Enter your retail sale price");
+                			recPrice = s.nextDouble();
+                		}
+                		else {
+                			System.out.println("Accepting price...");	
+                		}
+                		Bike newBike = new Bike(name, recPrice, promo, description, sqft, weight, supp, sp, ron, bc, qty, btype, speed, color, qty);
+                		inventory.addItem(newBike);
+                		System.out.println("Bike added to inventory");
+            		}
+            		else if (an == 'P' || an == 'p') {
+            			System.out.println("Enter bulk price of part:");
+            			double bulkPrice = s.nextDouble();
+            			
+            			double recPrice = calcRecommendedPrice(sp, sqft);
+                		System.out.println("Recommended Retail Price is: " + recPrice);
+                		System.out.println("Accept this price? Y - yes N - no (enter own price)");
+                		ans = s.next();
+                		ans.toUpperCase();
+                		an = ans.charAt(0);
+                		
+                		if (an == 'N' || an == 'n') {
+                			System.out.println("Enter your retail sale price");
+                			recPrice = s.nextDouble();
+                		}
+                		else {
+                			System.out.println("Accepting price...");	
+                		}
+                		Part newPart = new Part(name, recPrice, promo, description, sqft, weight, supp, sp, ron, bc, qty, bulkPrice, qty);
+                		inventory.addItem(newPart);
+                		System.out.println("Part added to inventory");
+            		}
+            		else {
+            			System.out.println("Invalid item type");
+            			continue;
+            		}
+            	}
+            	else if (type == 2) {
+            		System.out.println("Enter barcode of item you want to restock");
+            		int bc = s.nextInt();
+            		Item restockItem = inventory.getItem(bc);
+            		if (restockItem == null) {
+            			System.out.println("Item not found");
+            		}
+            		else {
+            			System.out.println("Enter how many new units to add to stock:");
+            			int newStock = s.nextInt();
+            			restockItem.setStock(restockItem.getStock() + newStock);
+            		}
+            	}
+            	else {
+            		System.out.println("Invalid selection, try again");
+            	}
+        	}
+        	// Print all inventory items
         	else if (ch == 'u') {
         		inventoryIter.resetCurr();
         		Item inventoryItm = inventoryIter.next();
@@ -249,13 +357,17 @@ public class BikeStore {
             {
             	//p.printlist(containInStock);
             }
+        	
+            else if (ch == 'k') {
+            	PrintCommand();
+            }
             
             else
             {
                 System.out.println ("Invalid command input");
                 System.out.println ("Clearing until End of Line *" + s.nextLine() + "*");
             }   
-            System.out.print ("\nEnter a command: ");
+            System.out.print ("\nEnter a command (k to print commands): ");
 
         }
         System.out.println("Quiting Program - EOF reached\n"); 
@@ -270,9 +382,15 @@ public class BikeStore {
         System.out.println("p - Print purchase list");
         System.out.println("o - Print contain out of stock");
         System.out.println("u - List all items in inventory");
+        System.out.println("k - print list of commands");
         System.out.println("q - Quits the program\n");
 
         System.out.print ("Please enter a command: ");
+	}
+	
+	public static double calcRecommendedPrice(double purchasePrice, double sqft) {
+		//assuming it costs $0.01/sqft to store + $5 to hold the item in the store
+		return (purchasePrice + 5.0) + (0.01*sqft);
 	}
 	
 	public static String takeInput(Scanner s)

@@ -1,4 +1,4 @@
 Name: 
 Price: $10.99
-Qty: 19
+Qty: 1
 
