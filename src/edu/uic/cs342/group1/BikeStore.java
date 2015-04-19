@@ -24,7 +24,7 @@ public class BikeStore {
 	
 	public enum saveType { CUSTOMER, INVENTORY, LOWSTOCK } //save type depending on container
 	
-	public static void run() throws IOException, ClassNotFoundException{
+	public void run() throws IOException, ClassNotFoundException{
 		
 		//print manager object to print to printer
         PrintManager p = new PrintManager(); 
