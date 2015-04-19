@@ -390,17 +390,13 @@ public class BikeStore {
         	//print items in inventory whose items are low in stock, by finding it and printing info
             else if(ch =='s')
             {
-            	Container temp = new Container();
             	Iterator inventIter = inventory.createIterator();
             	while (inventIter.hasNext()) {
             		Item stockItem = inventIter.next();
-            		
             		if (stockItem.isLowStock()) {
-            			temp.addItem(stockItem);
             			stockItem.printInfo();
             		}
             	}
-            	save(temp, saveType.LOWSTOCK);
             }
         	//print items in inventory whose items are out of stock by finding it and printing info
             else if(ch =='o')
@@ -462,6 +458,12 @@ public class BikeStore {
 	public static double calcRecommendedPrice(double purchasePrice, double sqft) {
 		//assuming it costs $0.01/sqft to store + $5 to hold the item in the store
 		return (purchasePrice + 5.0) + (0.01*sqft);
+	}
+	
+	public static String takeInput(Scanner s)
+	{
+		String command = s.next();
+		return command;
 	}
 	
 	//load function to load container
