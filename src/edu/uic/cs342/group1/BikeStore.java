@@ -358,6 +358,7 @@ public class BikeStore {
             	//p.printlist(containInStock);
             }
         	
+        	//print command list
             else if (ch == 'k') {
             	PrintCommand();
             }
@@ -381,6 +382,7 @@ public class BikeStore {
         System.out.println("c - Customer check out");
         System.out.println("p - Print purchase list");
         System.out.println("o - Print contain out of stock");
+        System.out.println("a - Add new inventory/restock");
         System.out.println("u - List all items in inventory");
         System.out.println("k - print list of commands");
         System.out.println("q - Quits the program\n");
@@ -401,7 +403,7 @@ public class BikeStore {
 	
 	public static Container load() throws IOException, ClassNotFoundException{
 		Container tempCont = new Container();
-		FileInputStream loadFile = new FileInputStream("SaveObj.sav");
+		FileInputStream loadFile = new FileInputStream("Inventory.sav");
 		ObjectInputStream loadCont = new ObjectInputStream(loadFile);
 		tempCont = (Container) loadCont.readObject();
 		loadCont.close();
