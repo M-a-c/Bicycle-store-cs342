@@ -17,7 +17,8 @@ public class Customer {
 	// an instance of PrintManager class, used to print receipt at checkout
 	PrintManager p = new PrintManager();
 	
-	public Customer(){
+	public Customer() 
+	{
 		this.id = 0;
 		this.type = "Normal";
 	}

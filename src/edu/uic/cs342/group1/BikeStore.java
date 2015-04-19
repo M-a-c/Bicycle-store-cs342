@@ -12,10 +12,19 @@ import java.util.Scanner;
 
 
 public class BikeStore {
+	//implemtation of singleton pattern, make a new instance of bikeStore
+	private static BikeStore instance = new BikeStore();
+	private BikeStore(){} //private constructor 
+	//return the BikeStore singleton object
+    public static BikeStore getInstance(){
+	      return instance;
+	   }
+	
+
 	
 	public enum saveType { CUSTOMER, INVENTORY, LOWSTOCK } //save type depending on container
 	
-	public static void main(String[] args) throws IOException, ClassNotFoundException{
+	public static void run() throws IOException, ClassNotFoundException{
 		
 		//print manager object to print to printer
         PrintManager p = new PrintManager(); 
