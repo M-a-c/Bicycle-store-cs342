@@ -34,6 +34,11 @@ public class Bike extends Item implements Serializable{//serialziable added for 
 		this.speed=speed;
 		this.color=color;
 	}
+	
+	public Item copyItem() {
+		Item newI = new Bike(this.getName(), this.getPrice(), this.getPromotion(), this.getDescription(), this.getSqftOccupied(), this.getWeight(), this.getSupplierName(), this.getSupplierPrice(), this.getReorderNumber(), this.getBarcode(), this.getStock(), this.type, this.speed, this.color, this.getQuantity());
+		return newI;
+	}
 
 	private String type;
 	private int speed;

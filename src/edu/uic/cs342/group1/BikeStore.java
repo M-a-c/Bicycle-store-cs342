@@ -21,8 +21,8 @@ public class BikeStore {
         
         PrintManager p = new PrintManager();
         Container inventory = new Container();
-        Container receipt = new Container();
-        Container PurchaseList;
+        Container purchaseList = new Container();
+        Container salesList = new Container();
         Item i;
 	    String input;
 		
@@ -59,6 +59,17 @@ public class BikeStore {
 		inventory.addItem(part5);
 		inventory.addItem(bike5);
 		inventory.addItem(part6);
+		purchaseList.addItem(bike1);
+		purchaseList.addItem(bike2);
+		purchaseList.addItem(bike3);
+		purchaseList.addItem(part1);
+		purchaseList.addItem(part2);
+		purchaseList.addItem(part3);
+		purchaseList.addItem(bike4);
+		purchaseList.addItem(part4);
+		purchaseList.addItem(part5);
+		purchaseList.addItem(bike5);
+		purchaseList.addItem(part6);
 		
 		save(inventory, saveType.INVENTORY);
 
@@ -141,6 +152,7 @@ public class BikeStore {
                 		}
                 		Bike newBike = new Bike(name, recPrice, promo, description, sqft, weight, supp, sp, ron, bc, qty, btype, speed, color, qty);
                 		inventory.addItem(newBike);
+                		purchaseList.addItem(newBike);
                 		System.out.println("Bike added to inventory");
             		}
             		else if (an == 'P' || an == 'p') {
@@ -163,6 +175,7 @@ public class BikeStore {
                 		}
                 		Part newPart = new Part(name, recPrice, promo, description, sqft, weight, supp, sp, ron, bc, qty, bulkPrice, qty);
                 		inventory.addItem(newPart);
+                		purchaseList.addItem(newPart);
                 		System.out.println("Part added to inventory");
             		}
             		else {
@@ -174,6 +187,7 @@ public class BikeStore {
             		System.out.println("Enter barcode of item you want to restock");
             		int bc = s.nextInt();
             		Item restockItem = inventory.getItem(bc);
+            		Item updatePurchaseListItem = purchaseList.getItem(bc);
             		if (restockItem == null) {
             			System.out.println("Item not found");
             		}
@@ -181,6 +195,7 @@ public class BikeStore {
             			System.out.println("Enter how many new units to add to stock:");
             			int newStock = s.nextInt();
             			restockItem.setStock(restockItem.getStock() + newStock);
+            			updatePurchaseListItem.setStock(updatePurchaseListItem.getStock() + newStock);
             		}
             	}
             	else {
@@ -219,6 +234,7 @@ public class BikeStore {
             	int bc =  s.nextInt();
             
             	i = inventory.getItem(bc);
+            	i.printInfo();
             }
             
             //customer check out
@@ -283,12 +299,12 @@ public class BikeStore {
 		                		validAmt = amount <= i.getStock();
 		                	}
 		                	
-		                	Item checkOutItem = new Item();
-		                	checkOutItem.setBarcode(i.getBarcode());
+		                	Item checkOutItem = i.copyItem();
 		                	checkOutItem.setQuantity(amount);
-		                	checkOutItem.setPrice(i.getPrice());
+		                	checkOutItem.setStock(amount);
 		                	
 		                	cart.addItem(checkOutItem);
+		                	
 		        		}
 		        		
             		}
@@ -324,6 +340,7 @@ public class BikeStore {
             		
             		//update inventory
             		while (cartItm != null) {
+            			salesList.addItem(cartItm);
             			Item inventoryItem = inventory.getItem(cartItm.getBarcode());
             			inventoryItem.setStock(inventoryItem.getStock() - (cartItm.getQuantity()));
             			cartItm = cartIter.next();
@@ -349,13 +366,52 @@ public class BikeStore {
             //Print purchase list
             else if(ch == 'p')
             {
-            	//p.printlist(PurchaseList);
+            	Iterator pListIter = purchaseList.createIterator();
+            	pListIter.resetCurr();
+            	while (pListIter.hasNext()) {
+            		Item pI = pListIter.next();
+            		pI.printInfo();
+            	}
             }
             
             //print contain in stock
             else if(ch =='i')
             {
-            	//p.printlist(containInStock);
+            	Iterator inventIter = inventory.createIterator();
+            	while (inventIter.hasNext()) {
+            		Item stockItem = inventIter.next();
+            		if (stockItem.getStock() > 0) {
+            			stockItem.printInfo();
+            		}
+            	}
+            }
+            else if(ch =='s')
+            {
+            	Iterator inventIter = inventory.createIterator();
+            	while (inventIter.hasNext()) {
+            		Item stockItem = inventIter.next();
+            		if (stockItem.isLowStock()) {
+            			stockItem.printInfo();
+            		}
+            	}
+            }
+            else if(ch =='o')
+            {
+            	Iterator inventIter = inventory.createIterator();
+            	while (inventIter.hasNext()) {
+            		Item outStockItem = inventIter.next();
+            		if (outStockItem.getStock() == 0) {
+            			outStockItem.printInfo();
+            		}
+            	}
+            }
+            else if(ch =='n')
+            {
+            	Iterator salesIter = salesList.createIterator();
+            	while (salesIter.hasNext()) {
+            		Item saleItem = salesIter.next();
+            		saleItem.printInfo();
+            	}
             }
         	
         	//print command list
@@ -380,11 +436,14 @@ public class BikeStore {
 	    System.out.println("w - Write file");
 	    System.out.println("l — Look up items");
         System.out.println("c - Customer check out");
-        System.out.println("p - Print purchase list");
-        System.out.println("o - Print contain out of stock");
+        System.out.println("p - Print list of items purchased from vendors");
+        System.out.println("n - Print list of all items sold in store");
+        System.out.println("u - Print all items in inventory");
+        System.out.println("o - Print out of stock items in inventory");
+        System.out.println("s - Print low stock (< 5) items in inventory");
+        System.out.println("i - Print in stock items in inventory");
         System.out.println("a - Add new inventory/restock");
-        System.out.println("u - List all items in inventory");
-        System.out.println("k - print list of commands");
+        System.out.println("k - Print list of commands");
         System.out.println("q - Quits the program\n");
 
         System.out.print ("Please enter a command: ");

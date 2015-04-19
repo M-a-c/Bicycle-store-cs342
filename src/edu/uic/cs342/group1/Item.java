@@ -41,6 +41,7 @@ public class Item {
 		this.description = "";
 		this.sqftOccupied = 0;
 		this.weight = 0;
+		this.supplierName = "";
 		this.supplierPrice = 0;
 		this.reorderNumber = "";
 		this.barcode = 0;
@@ -48,6 +49,9 @@ public class Item {
 		this.quantity = 0;
 	}
 	
+	public Item copyItem() {
+		return null;
+	}
 	public void printInfo() {
 		System.out.println("Name: " + this.name);
 		System.out.println("Price: " + this.price);
