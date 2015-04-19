@@ -1,6 +1,7 @@
 package edu.uic.cs342.group1;
+import java.io.Serializable;
 
-public class Item {
+public class Item implements Serializable{
 	
 	//Private variables of item.
 	private String name;
