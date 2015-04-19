@@ -2,10 +2,6 @@ package edu.uic.cs342.group1;
 import java.io.Serializable;
 public class Bike extends Item implements Serializable{//serialziable added for saving; UML change needed?
 
-	//added for warning for Serializable interface;UML change? without it there's warnings but compiles and runs fine
-	//with it works fine and no warnings, but I'm not sure it's need or what issues can arise with this
-	//private static final long serialVersionUID = -1493830837646825989L;
-
 	public void printInfo() {
 		System.out.println("BIKE");
 		super.printInfo();
