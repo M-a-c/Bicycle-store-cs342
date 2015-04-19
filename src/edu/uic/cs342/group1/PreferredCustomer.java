@@ -7,6 +7,7 @@ public class PreferredCustomer implements FinalPrice {
 		return ((subtotal * .85) * 1.07);
 	}
 	
+	//print discount + tax info
 	public void getInfo() {
 		System.out.println("Type: Preferred Customer - Discount: 15% - Tax: 7%");
 	}

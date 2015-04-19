@@ -1,9 +1,9 @@
 package edu.uic.cs342.group1;
 
 public interface Iterator {
-	public boolean hasNext();
-	public Item next();
-	public boolean remove(Object a); //fix this in UML diagram (needs an argument)
-	public int getCurr();//Needed to reset current index/ADDED
-	public void resetCurr();//Added; fix UML
+	public boolean hasNext(); //returns true if container has another element
+	public Item next(); //return the next element (Item object)
+	public boolean remove(Item a); //removes Item from the container 
+	public int getCurr();//get the currentIndex
+	public void resetCurr();//reset currentIndex
 }

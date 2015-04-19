@@ -3,28 +3,22 @@ import java.util.*;
 import java.io.Serializable;
 
 public class Container implements Aggregate, Serializable {
-
+	//ArrayList holds the items in our container
 	private ArrayList<Item> list = new ArrayList<Item>();
 	
 
 	@Override
+	//create an iterator to iterate through the container
 	public Iterator createIterator() {
 		Iterator i = new ItemIterator();
 		return i;
 	}
 	
-	public int getAmount(int index) { //fix argument in UML diagram
-		return list.get(index).getQuantity();
-	}
-	
-	public void changeAmount(int newAmt, int index) { //fix argument in UML diagram		
-		list.get(index).setQuantity(newAmt);
-	}
-	
-	public void addItem(Item itm) { //fix argument in UML diagram
+	//Add an item into the container
+	public void addItem(Item itm) {
 		list.add(itm);
 	}
-	
+	//get an item given its barcode, if found return Item else return null
 	public Item getItem(int bc) {
 		for (Item i : list) {
 			if (i.getBarcode() == bc) {
@@ -34,24 +28,26 @@ public class Container implements Aggregate, Serializable {
 		return null;
 	}
 	
+	//return the size of the arrayList
 	public int size() {
 		return list.size();
 	}
 	
 
 
-
+	//Iterator class for the container
 	private class ItemIterator implements Iterator {
-		private int currentIndex = 0;
+		private int currentIndex = 0; //start at first element
 		
-		public int getCurr(){return currentIndex;}//Added; change UML
-		public void resetCurr(){currentIndex = 0;}//added; change UML
-		@Override
+		public int getCurr() { return currentIndex; }//get the current value of the currentIndex
+		public void resetCurr(){ currentIndex = 0; }//reset currentIndex to start of list
+		
+		//returns true if container has more Items in the list from currentIndex
 		public boolean hasNext() {
 			return currentIndex < list.size();
 		}
 
-		@Override
+		//returns next item from the currentIndex, if none left returns null
 		public Item next() {
 			if (currentIndex < list.size()) {
 				Item next = list.get(currentIndex);
@@ -62,10 +58,10 @@ public class Container implements Aggregate, Serializable {
 				return null;
 			}
 		}
-
-		@Override
-		public boolean remove(Object it) {
-			return list.remove((Item)it);
+		
+		//remove a given item from the list
+		public boolean remove(Item it) {
+			return list.remove(it);
 		}
 
 	}

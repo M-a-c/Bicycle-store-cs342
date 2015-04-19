@@ -7,6 +7,7 @@ public class Normal implements FinalPrice {
 		return (subtotal * 1.07);
 	}
 	
+	//print tax + discount info
 	public void getInfo() {
 		System.out.println("Type: Normal - Discount: 0% - Tax: 7%");
 	}

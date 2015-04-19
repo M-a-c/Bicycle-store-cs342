@@ -6,7 +6,7 @@ public class Veteran implements FinalPrice {
 	public double calculatePrice(double subtotal) {	
 		return ((subtotal * 0.9) * 1.07);
 	}
-	
+	//print tax + discount info
 	public void getInfo() {
 		System.out.println("Type: Veteran - Discount: 10% - Tax: 7%");
 	}
