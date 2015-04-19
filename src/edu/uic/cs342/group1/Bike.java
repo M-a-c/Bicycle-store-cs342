@@ -6,6 +6,13 @@ public class Bike extends Item implements Serializable{//serialziable added for 
 	//with it works fine and no warnings, but I'm not sure it's need or what issues can arise with this
 	//private static final long serialVersionUID = -1493830837646825989L;
 
+	public void printInfo() {
+		System.out.println("BIKE");
+		super.printInfo();
+		System.out.println("Type: " + this.type);
+		System.out.println("Speed: " + this.speed);
+		System.out.println("Color: " + this.color);
+	}
 
 	public Bike(String type,int speed,String color){
 		super();
@@ -21,9 +28,8 @@ public class Bike extends Item implements Serializable{//serialziable added for 
 		this.color="";
 	}																												//added
 	public Bike(String name,double price,double promotion,String description,double sqftOccupied,double weight,String supplierName, 
-			    double supplierPrice,String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock,String type,int speed,
-			    String color, int q){
-		super(name,price,promotion,description,sqftOccupied,weight,supplierName, supplierPrice,reorderNumber,barcode,stock,lowStock,outOfStock, q);
+			    double supplierPrice,String reorderNumber,int barcode,int stock,String type,int speed,String color, int q) {
+		super(name,price,promotion,description,sqftOccupied,weight,supplierName, supplierPrice,reorderNumber,barcode,stock, q);
 		this.type=type;
 		this.speed=speed;
 		this.color=color;

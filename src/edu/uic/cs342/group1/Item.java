@@ -14,13 +14,11 @@ public class Item {
 	private String reorderNumber;
 	private int barcode;
 	private int stock;
-	private boolean lowStock;
-	private boolean outOfStock;
 	private int quantity;
 	
 	//constructor																									//added
 	public Item(String name,double price,double promotion,String description,double sqftOccupied,double weight,String supplierName, 
-			    double supplierPrice, String reorderNumber,int barcode,int stock,boolean lowStock,boolean outOfStock, int q){
+			    double supplierPrice, String reorderNumber,int barcode,int stock, int q){
 		this.name = name;
 		this.price = price;
 		this.promotion = promotion;
@@ -32,8 +30,6 @@ public class Item {
 		this.reorderNumber = reorderNumber;
 		this.barcode = barcode;
 		this.stock = stock;
-		this.lowStock = lowStock;
-		this.outOfStock = outOfStock;
 		this.quantity = q;
 
 	}
@@ -49,11 +45,24 @@ public class Item {
 		this.reorderNumber = "";
 		this.barcode = 0;
 		this.stock = 0;
-		this.lowStock = true;//if everything is 0, these are certainly true
-		this.outOfStock = true;
 		this.quantity = 0;
 	}
 	
+	public void printInfo() {
+		System.out.println("Name: " + this.name);
+		System.out.println("Price: " + this.price);
+		System.out.println("Promotion: " + this.promotion);
+		System.out.println("Description: " + this.description);
+		System.out.println("Square Foot Occupied: " + this.sqftOccupied);
+		System.out.println("Weight: " + this.weight);
+		System.out.println("Supplier Price: " + this.supplierPrice);
+		System.out.println("Reorder Number: " + this.reorderNumber);
+		System.out.println("Barcode: " + this.barcode);
+		System.out.println("Stock: " + this.stock);
+		System.out.println("Low Stock: " + (stock < 5));
+		System.out.println("Out of Stock: " + (stock == 0));
+		System.out.println("Quantity: " + this.quantity);
+	}
 	//All getters and setters.
 	public String getName() {
 		return name;
@@ -128,16 +137,10 @@ public class Item {
 		this.stock = stock;
 	}
 	public boolean isLowStock() {
-		return lowStock;
-	}
-	public void setLowStock(boolean lowStock) {
-		this.lowStock = lowStock;
+		return (stock < 5 && stock > 0);
 	}
 	public boolean isOutOfStock() {
-		return outOfStock;
-	}
-	public void setOutOfStock(boolean outOfStock) {
-		this.outOfStock = outOfStock;
+		return (stock == 0);
 	}
 	
 }

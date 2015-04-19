@@ -19,10 +19,17 @@ public class Part extends Item implements Serializable {//serialziable added for
 		super();
 		this.bulkPrice=1;//one item per the price.
 	}
+	
+	public void printInfo() {
+		System.out.println("PART");
+		super.printInfo();
+		System.out.println("Bulk Price: " + this.bulkPrice);
+	}
 																														//added
 	public Part(String name, double price, double promotion, String description, double sqftOccupied, double weight, String supplierName, 
-			    double supplierPrice, String reorderNumber, int barcode, int stock, boolean lowStock, boolean outOfStock, double bulkPrice, int q){
-		super(name, price, promotion, description, sqftOccupied, weight, supplierName, supplierPrice, reorderNumber, barcode, stock, lowStock, outOfStock, q);
+			    double supplierPrice, String reorderNumber, int barcode, int stock, double bulkPrice, int q){
+		super(name, price, promotion, description, sqftOccupied, weight, supplierName, supplierPrice, reorderNumber, barcode, stock, q);
+
 		this.bulkPrice = bulkPrice;
 	}
 	

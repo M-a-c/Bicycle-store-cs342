@@ -49,6 +49,15 @@ public class Customer {
 		this.type = type;
 	}
 	
+	public void setPricing(int i) {
+		switch (i) {
+		case 1: this.calcPrice = new Normal(); this.type = "Normal"; break;
+		case 2: this.calcPrice = new Veteran(); this.type = "Veteran"; break;
+		case 3: this.calcPrice = new PreferredCustomer(); this.type = "Preferred Customer"; break;
+		case 4: this.calcPrice = new TaxExempt(); this.type = "Tax Exempt"; break;
+		}
+	}
+	
 	public double getPrice(double subtotal) {
 		
 		return calcPrice.calculatePrice(subtotal);

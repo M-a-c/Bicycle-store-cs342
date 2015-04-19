@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class BikeStore {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
 
-        Customer cust = new Customer();
+        
         PrintManager p = new PrintManager();
         Container inventory = new Container();
         Container receipt = new Container();
@@ -34,17 +35,17 @@ public class BikeStore {
 
 		//these 11 items (or some variation) will be saved to a save file and loaded as base inventory; will need to make sure the .sav
 		//file is in the file we turn in and in the correct folder.
-		Bike bike1 = new Bike("Bike", 128.30, 0.0, "Used", 5.0, 10.3,"Trev's Auto", 98.10, "555", 66666, 10, false, false, "Street", 7, "Red",10);
-		Bike bike2 = new Bike("Bike", 210.26, 0.0, "New", 5.10, 9.3, "Hot Rod", 156.36, "45710", 54545, 0, true, true, "Mountain", 4, "Blue",0);
-		Bike bike3 = new Bike("Bike", 98.75, 0.25, "Used", 5.33, 8.7, "Genny's", 76.33, "2014", 3232, 2, true, false, "Dirt", 3, "Green",2);
-		Bike bike4 = new Bike("Bike", 178.77, 0.10, "New", 5.0, 10.77,"Trev's Auto", 160.99, "555", 10247, 0, false, false, "Dirt", 12, "Red",0);
-		Bike bike5 = new Bike("Bike", 269.69, 0.0, "New", 6.22, 9.1,"Trev's Auto", 198.72, "10258", 62547, 10, false, false, "Street", 1, "Green",10);
-		Part part1 = new Part("Gear", 3.33, 3.6, "Used", .75, .42, "Wholesaler's Inc", 1.75, "12", 111, 32, false, false, 7.75, 32);
-		Part part2 = new Part("Pedal", 12.99, 0.0, "New", 5.7, 7.32, "Year's Best", 8.55, "7548", 8563, 1, true, false, 16.21, 1);
-		Part part3 = new Part("Chain", 6.75, 0.0, "New", .36, 5.2, "New Parts", 4.86, "36501", 7452, 0, true, true, 10.87, 0);
-		Part part4 = new Part("Wheel", 54.55, 2.5, "New", 6.85, .15, "Wholesaler's Inc", 42.11, "1200", 99147, 17, false, false, 95.22, 17);
-		Part part5 = new Part("Seat", 20.36, .30, "Used", 2.25, 10.36, "Hot Rod", 17.00, "12", 980, 9, false, false, 39.75, 9);
-		Part part6 = new Part("Reflective Mirrors", 10.99, 0.0, "New", .25, 1.75, "New Parts", 7.75, "1665", 147, 20, false, false, 17.55, 20);
+		Bike bike1 = new Bike("Bike", 128.30, 0.0, "Used", 5.0, 10.3,"Trev's Auto", 98.10, "555", 66666, 10, "Street", 7, "Red",10);
+		Bike bike2 = new Bike("Bike", 210.26, 0.0, "New", 5.10, 9.3, "Hot Rod", 156.36, "45710", 54545, 0, "Mountain", 4, "Blue",0);
+		Bike bike3 = new Bike("Bike", 98.75, 0.25, "Used", 5.33, 8.7, "Genny's", 76.33, "2014", 3232, 2, "Dirt", 3, "Green",2);
+		Bike bike4 = new Bike("Bike", 178.77, 0.10, "New", 5.0, 10.77,"Trev's Auto", 160.99, "555", 10247, 0, "Dirt", 12, "Red",0);
+		Bike bike5 = new Bike("Bike", 269.69, 0.0, "New", 6.22, 9.1,"Trev's Auto", 198.72, "10258", 62547, 10, "Street", 1, "Green",10);
+		Part part1 = new Part("Gear", 3.33, 3.6, "Used", .75, .42, "Wholesaler's Inc", 1.75, "12", 111, 32, 7.75, 32);
+		Part part2 = new Part("Pedal", 12.99, 0.0, "New", 5.7, 7.32, "Year's Best", 8.55, "7548", 8563, 1, 16.21, 1);
+		Part part3 = new Part("Chain", 6.75, 0.0, "New", .36, 5.2, "New Parts", 4.86, "36501", 7452, 0, 10.87, 0);
+		Part part4 = new Part("Wheel", 54.55, 2.5, "New", 6.85, .15, "Wholesaler's Inc", 42.11, "1200", 99147, 17, 95.22, 17);
+		Part part5 = new Part("Seat", 20.36, .30, "Used", 2.25, 10.36, "Hot Rod", 17.00, "12", 980, 9, 39.75, 9);
+		Part part6 = new Part("Reflective Mirrors", 10.99, 0.0, "New", .25, 1.75, "New Parts", 7.75, "1665", 147, 20, 17.55, 20);
 		
 		
 		inventory.addItem(bike1);
@@ -64,6 +65,9 @@ public class BikeStore {
 	    PrintCommand();
         Scanner s = new Scanner(System.in);
         
+        Iterator inventoryIter = inventory.createIterator();
+        
+        
         while(s.hasNext())
         {
         	input = takeInput(s);
@@ -76,6 +80,16 @@ public class BikeStore {
                 s.close();
                 return;
             }
+        	else if (ch == 'u') {
+        		inventoryIter.resetCurr();
+        		Item inventoryItm = inventoryIter.next();
+
+        		while (inventoryItm != null) {
+        			(inventoryItm).printInfo();
+        			inventoryItm = inventoryIter.next();
+        		}
+        		
+        	}
         	//****read file not done
         	else if (ch == 'r')
         	{
@@ -94,9 +108,9 @@ public class BikeStore {
             {
             	System.out.print("Please enter item bar code you want to look up: ");
             	
-            	String name =  s.nextLine();
+            	int bc =  s.nextInt();
             
-            	i = cust.ItemLookup(name);
+            	i = inventory.getItem(bc);
             }
             
             //customer check out
@@ -104,100 +118,111 @@ public class BikeStore {
             {
              	System.out.println("Please tell me what type of customer you are?");
             	System.out.println("     1. Normal  ");
-            	System.out.println("     2. Vetrran  ");
+            	System.out.println("     2. Veteran  ");
             	System.out.println("     3. Preferred Customer  ");
             	System.out.println("     4. Tax Exempt  ");
             	System.out.print("Please choose a number: ");
             	
             	//customer type
             	int type = s.nextInt();
-            	//item name
-            	String name;
-            	double subtotal =0.0;
+            	Customer cust = new Customer();
+            	cust.setPricing(type);
             	
-            	// Create new ArrayList.
+            	//item barcode
+            	int bc;
+            	double subtotal = 0.0;
+            	
+            	// Create new cart.
             	Container cart = new Container();
+            	Iterator cartIter = cart.createIterator();
             	
-            	System.out.println("Please enter the item name you want to add to cart, f to finish and proceed to checkout");
+            	System.out.println("Please enter the item barcode you want to add to cart, -1 to finish and proceed to checkout");
             	
             	//take item name
-            	name = s.nextLine();
+            	bc = s.nextInt();
             	
-            	while(! name.equals("f"))
+            	while(bc != -1)
             	{
-            		i = cust.ItemLookup(name);
+            		i = inventory.getItem(bc);
             		
-            		//check if low stock
-            		if(i.isLowStock())
-            		{
-            			
-            			System.out.println("Item is low stock, and only "+ i.getQuantity()+" item left");
+            		if (i == null) {
+            			System.out.println("Item not found");
             		}
-            		
-            		//check if out of stock
-            		else if (i.isOutOfStock())
-            		{
-            			System.out.println("Item is out of stock");
+            		else {
+		        		//check if low stock
+		        		if(i.isLowStock())
+		        		{
+		        			System.out.println("Item is low stock, and only "+ i.getStock()+" item left");
+		        		}
+		        		
+		        		//check if out of stock
+		        		if (i.isOutOfStock())
+		        		{
+		        			System.out.println("Item is out of stock");
+		        		}
+		        		
+		        		else
+		        		{
+		        			System.out.println("Please enter the amount for the item you just added.");
+		                	
+		                	int amount = s.nextInt();
+		                	
+		                	boolean validAmt = amount <= i.getStock();
+		                	
+		                	while (!validAmt) {
+		                		System.out.println("Not Enough Quantity (" + i.getStock() + " remaining), please enter less or select different item");
+		                		amount = s.nextInt();
+		                		validAmt = amount <= i.getStock();
+		                	}
+		                	
+		                	Item checkOutItem = new Item();
+		                	checkOutItem.setBarcode(i.getBarcode());
+		                	checkOutItem.setQuantity(amount);
+		                	checkOutItem.setPrice(i.getPrice());
+		                	
+		                	cart.addItem(checkOutItem);
+		        		}
+		        		
             		}
-            		
-            		else
-            		{
-            			System.out.println("Please enter the amount for the item you just added.");
-                    	
-                    	int amount = s.nextInt();
-                    	
-                    	i.setQuantity(amount);
-                    	
-                    	cart.addItem(i);
-                    	
-                    	// Loop through elements.
-                    	
-                    	System.out.println("Items: ");
-                    	
-                    	for (int j = 0; j < cart.size(); j++) {
-                    	    Item it = cart.getItem(j);
-                    	    subtotal = subtotal+ it.getPrice()*it.getQuantity();
-                    	    System.out.println(i+". "+it.getName() + "X"+ it.getQuantity()+ "  ");
-                    	}
-                    	System.out.println("Subtotal: $ "+ subtotal);
-                    	
-                    	System.out.println("Please enter the item name you want to add to cart"
-                    			+ " f to finish and proceed to checkout");
-                    	
-                    	name = s.nextLine();
-            		}
+                	
+                	System.out.println("Please enter the item barcode you want to add to cart -1 to finish and proceed to checkout");
+                	
+                	bc = s.nextInt();
+                	
                 }
-            	System.out.println("Calculating the final price...");
+            	System.out.println("Items: ");
+            	cartIter.resetCurr();
+            	Item cartItm = cartIter.next();
+            	while (cartItm != null) {
+            		subtotal += cartItm.getPrice() * cartItm.getQuantity();
+            		cartItm = cartIter.next();
+            	}
+            	System.out.println("Subtotal: $ "+ subtotal);
             	
+            	System.out.println("Calculating the final price...");
             	double fp = cust.getPrice(subtotal);
-            
-            	System.out.println("Final price is "+ fp + "comfirm payment? Y - yes, N - No ");
+            	DecimalFormat df = new DecimalFormat("#.##");
+            	System.out.println("Final price is "+ df.format(fp) + "\nConfirm Payment? Y - yes, N - No ");
             	
             	String cfstring = s.next();
             	
             	cfstring.toUpperCase();
             	char cf = cfstring.charAt(0);
-            	
-            	if(cf == 'Y')
+            	if(cf == 'Y' || cf == 'y')
             	{
-            		for (int j = 0; j < cart.size(); j++) {
-                	    Item it = cart.getItem(j);
-                	    int barcode = it.getBarcode();
+            		
+            		cartIter.resetCurr(); //reset cart iterator's index to 0
+            		cartItm = cartIter.next(); //get first item in cart
+            		
+            		//update inventory
+            		while (cartItm != null) {
+            			Item inventoryItem = inventory.getItem(cartItm.getBarcode());
+            			inventoryItem.setStock(inventoryItem.getStock() - (cartItm.getQuantity()));
+            			cartItm = cartIter.next();
+            		}
                 	    
-                	    for (int k = 0; j < cart.size(); j++) {
-                    	    Item oldit = inventory.getItem(j);
-                    	    
-                    	    int oldbarcode =oldit.getBarcode();
-                    	    
-                    	    if(barcode == oldbarcode)
-                    	    {
-                    	    	int quantity = oldit.getQuantity();
-                    	    	oldit.setQuantity(quantity - it.getQuantity());
-                    	    }
-                    	    
-                    	}
-                	    
-                	}
+            		
+            		System.out.println("Inventory updated...Checkout Completed");
             		
             		//save inventory
             		save(inventory, saveType.INVENTORY);
@@ -206,9 +231,9 @@ public class BikeStore {
             		save(cart, saveType.CUSTOMER);
             	}
             	
-            	else if(cf == 'N')
+            	else if(cf == 'N' || cf == 'n')
             	{
-            		System.out.println("Cart clean...");
+            		System.out.println("Cart removed...");
             	}
             		
             }
@@ -244,7 +269,9 @@ public class BikeStore {
         System.out.println("c - Customer check out");
         System.out.println("p - Print purchase list");
         System.out.println("o - Print contain out of stock");
+        System.out.println("u - List all items in inventory");
         System.out.println("q - Quits the program\n");
+
         System.out.print ("Please enter a command: ");
 	}
 	

@@ -28,8 +28,13 @@ public class Container implements Aggregate, Serializable {
 		list.add(itm);
 	}
 	
-	public Item getItem(int index) {
-		return list.get(index);
+	public Item getItem(int bc) {
+		for (Item i : list) {
+			if (i.getBarcode() == bc) {
+				return i;
+			}
+		}
+		return null;
 	}
 	
 	public int size() {
@@ -54,10 +59,15 @@ public class Container implements Aggregate, Serializable {
 		}
 
 		@Override
-		public Object next() {
-			Object next = list.get(currentIndex);
-			currentIndex++;
-			return next;
+		public Item next() {
+			if (currentIndex < list.size()) {
+				Item next = list.get(currentIndex);
+				currentIndex++;
+				return next;
+			}
+			else {
+				return null;
+			}
 		}
 
 		@Override
