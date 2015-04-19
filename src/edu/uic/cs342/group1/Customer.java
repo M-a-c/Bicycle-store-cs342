@@ -41,8 +41,8 @@ public class Customer {
 		}
 	}
 	
-	public String getType(){
-		return type;
+	public void getType(){
+		calcPrice.getInfo();
 	}
 	
 	public void setType(String type){

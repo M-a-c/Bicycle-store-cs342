@@ -314,19 +314,23 @@ public class BikeStore {
                 	bc = s.nextInt();
                 	
                 }
+            	DecimalFormat df = new DecimalFormat("#.##");
             	System.out.println("Items: ");
             	cartIter.resetCurr();
             	Item cartItm = cartIter.next();
             	while (cartItm != null) {
+            		System.out.println(cartItm.getName() + " - $" + df.format(cartItm.getPrice()) + "/ea - QTY: " + cartItm.getQuantity() + " - TOTAL: $" + df.format(cartItm.getPrice() * cartItm.getQuantity()));
             		subtotal += cartItm.getPrice() * cartItm.getQuantity();
             		cartItm = cartIter.next();
             	}
-            	System.out.println("Subtotal: $ "+ subtotal);
+            	System.out.println("\nSubtotal: $ "+ df.format(subtotal));
             	
-            	System.out.println("Calculating the final price...");
+            	System.out.println("Calculating the final price based on customer type:");
+            	System.out.println("\nCustomer Info: ");
+            	cust.getType();
             	double fp = cust.getPrice(subtotal);
-            	DecimalFormat df = new DecimalFormat("#.##");
-            	System.out.println("Final price is "+ df.format(fp) + "\nConfirm Payment? Y - yes, N - No ");
+            	
+            	System.out.println("\nFinal price is $"+ df.format(fp) + "\nConfirm Payment? Y - yes, N - No \n");
             	
             	String cfstring = s.next();
             	
