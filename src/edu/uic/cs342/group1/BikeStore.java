@@ -351,13 +351,17 @@ public class BikeStore {
             }
             else if(ch =='s')
             {
+            	Container temp = new Container();
             	Iterator inventIter = inventory.createIterator();
             	while (inventIter.hasNext()) {
             		Item stockItem = inventIter.next();
+            		
             		if (stockItem.isLowStock()) {
+            			temp.addItem(stockItem);
             			stockItem.printInfo();
             		}
             	}
+            	save(temp, saveType.LOWSTOCK);
             }
             else if(ch =='o')
             {

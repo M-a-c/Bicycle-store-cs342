@@ -9,14 +9,14 @@ public class Item {
 	private String description;
 	private double sqftOccupied;
 	private double weight;
-	private String supplierName;//added;UML diagram needs updating
+	private String supplierName;
 	private double supplierPrice;
 	private String reorderNumber;
 	private int barcode;
 	private int stock;
 	private int quantity;
 	
-	//constructor																									//added
+	//constructor																								
 	public Item(String name,double price,double promotion,String description,double sqftOccupied,double weight,String supplierName, 
 			    double supplierPrice, String reorderNumber,int barcode,int stock, int q){
 		this.name = name;

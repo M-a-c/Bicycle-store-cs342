@@ -1,6 +1,6 @@
 package edu.uic.cs342.group1;
 import java.io.Serializable;
-public class Bike extends Item implements Serializable{//serialziable added for saving; UML change needed?
+public class Bike extends Item implements Serializable{
 
 	public void printInfo() {
 		System.out.println("BIKE");

@@ -1,9 +1,9 @@
 package edu.uic.cs342.group1;
 
 import java.io.Serializable;
-public class Part extends Item implements Serializable {//serialziable added for saving; UML change needed?
+public class Part extends Item implements Serializable {
 
-	private double bulkPrice;//changed to double; UML change needed?
+	private double bulkPrice;
 
 	//constructor
 	public Part(int bulkPrice){
