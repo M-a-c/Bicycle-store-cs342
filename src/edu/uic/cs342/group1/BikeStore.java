@@ -279,6 +279,19 @@ public class BikeStore {
             	System.out.println("     4. Tax Exempt  ");
             	System.out.print("Please choose a number: ");
             	
+            	//save file at the begining
+          
+            	//save inventory
+            	
+            	Container TempIN = new Container();
+            	Iterator inventIter2 = inventory.createIterator();
+            	while (inventIter2.hasNext()) {
+            		Item stockItem = inventIter2.next();
+            		
+            	    TempIN.addItem(stockItem);
+            	
+            	}
+        		
             	//customer type
             	int type = 1;
             	Customer cust = new Customer();
@@ -354,6 +367,12 @@ public class BikeStore {
 		                	//change quantity and stock elements to amount customer wants
 		                	checkOutItem.setQuantity(amount);
 		                	checkOutItem.setStock(amount);
+		                	
+		                	//save new inventory
+                    		save(inventory, saveType.INVENTORY);
+                    		
+                    		inventory = load();
+                    		
 		                	//add this item into cart
 		                	cart.addItem(checkOutItem);
 		                	
@@ -419,11 +438,11 @@ public class BikeStore {
                     		//save cart that was purchased
                     		save(cart, saveType.CUSTOMER);
                     		
-                    		//sava low stock file
+                    		//save low stock file
                     		Container temp = new Container();
-                        	Iterator inventIter = inventory.createIterator();
-                        	while (inventIter.hasNext()) {
-                        		Item stockItem = inventIter.next();
+                        	Iterator inventIter3 = inventory.createIterator();
+                        	while (inventIter3.hasNext()) {
+                        		Item stockItem = inventIter3.next();
                         		if (stockItem.isLowStock()) {
                         			temp.addItem(stockItem);
                         		}
@@ -434,6 +453,13 @@ public class BikeStore {
                     	else if(cf == 'N' || cf == 'n')
                     	{
                     		System.out.println("Cart removed...");
+                    		
+                    		//resave all
+                 
+                    		save(TempIN, saveType.INVENTORY);
+                    		
+                    		inventory = load();
+                    		
                     	}
             		}
             		else
