@@ -483,7 +483,7 @@ public class BikeStore {
 	
 	public static Container load() throws IOException, ClassNotFoundException{
 		Container tempCont = new Container();
-		FileInputStream loadFile = new FileInputStream("Inventory.sav");
+		FileInputStream loadFile = new FileInputStream("Inventory.sv");
 		ObjectInputStream loadCont = new ObjectInputStream(loadFile);
 		tempCont = (Container) loadCont.readObject();
 		loadCont.close();
@@ -495,7 +495,7 @@ public class BikeStore {
 		switch (typeOfSave){
 		
 			case INVENTORY: 
-				FileOutputStream saveFile = new FileOutputStream("Inventory.sav");
+				FileOutputStream saveFile = new FileOutputStream("Inventory.sv");
 				ObjectOutputStream saveObj = new ObjectOutputStream(saveFile);
 				saveObj.writeObject(items);
 				saveObj.close();
