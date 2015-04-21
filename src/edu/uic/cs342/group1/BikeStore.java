@@ -45,7 +45,8 @@ public class BikeStore {
 	    try{
 	    inventory = load (); //load inventory from file when program was last closed
 	    }
-	    catch (ClassNotFoundException e){
+	    catch (Exception e){
+	    	if (e instanceof IOException || e instanceof ClassNotFoundException)
 	    	inventory = newInventory(inventory);
 	    }
 	    
