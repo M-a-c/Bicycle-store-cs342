@@ -2,6 +2,12 @@ package edu.uic.cs342.group1;
 import java.io.Serializable;
 public class Bike extends Item implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4512883357126728279L;
+
+
 	public void printInfo() {
 		System.out.println("BIKE");
 		super.printInfo();

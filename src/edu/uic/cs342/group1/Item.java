@@ -3,6 +3,10 @@ import java.io.Serializable;
 
 public class Item implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3114001639597868860L;
 	//Private variables of item.
 	private String name;
 	private double price;

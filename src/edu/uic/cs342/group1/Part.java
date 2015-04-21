@@ -3,6 +3,10 @@ package edu.uic.cs342.group1;
 import java.io.Serializable;
 public class Part extends Item implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1505135537500462685L;
 	private double bulkPrice;
 
 	//constructor

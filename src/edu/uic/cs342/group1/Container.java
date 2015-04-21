@@ -3,6 +3,10 @@ import java.util.*;
 import java.io.Serializable;
 
 public class Container implements Aggregate, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4152898762382538609L;
 	//ArrayList holds the items in our container
 	private ArrayList<Item> list = new ArrayList<Item>();
 	
