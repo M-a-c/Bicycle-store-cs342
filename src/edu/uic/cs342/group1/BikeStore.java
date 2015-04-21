@@ -368,70 +368,77 @@ public class BikeStore {
                 }
             	if(!bc.equals("-2"))
             	{
-            		//print cart contents that's being checked out, price per item, total price, quantity, and order subtotal
-                	DecimalFormat df = new DecimalFormat("#.##");
-                	System.out.println("Items: ");
-                	cartIter.resetCurr();
-                	Item cartItm = cartIter.next();
-                	while (cartItm != null) {
-                		System.out.println(cartItm.getName() + " - $" + df.format(cartItm.getPrice()) + "/ea - QTY: " + cartItm.getQuantity() + " - TOTAL: $" + df.format(cartItm.getPrice() * cartItm.getQuantity()));
-                		subtotal += cartItm.getPrice() * cartItm.getQuantity();
-                		cartItm = cartIter.next();
-                	}
-                	System.out.println("\nSubtotal: $ "+ df.format(subtotal));
-                	
-                	//calculate the final price based on the type of customer it was and print type of customer
-                	System.out.println("Calculating the final price based on customer type:");
-                	System.out.println("\nCustomer Info: ");
-                	cust.getType();
-                	double fp = cust.getPrice(subtotal);
-                	
-                	System.out.println("\nFinal price is $"+ df.format(fp) + "\nConfirm Payment? Y - yes, N - No \n");
-                	
-                	String cfstring = s.next();
-                	
-                	cfstring.toUpperCase();
-                	char cf = cfstring.charAt(0);
-                	//finish checkout?, yes
-                	if(cf == 'Y' || cf == 'y')
-                	{
-                		
-                		cartIter.resetCurr(); //reset cart iterator's index to 0
-                		cartItm = cartIter.next(); //get first item in cart
-                		
-                		//update inventory by subtracting the amount that the customer bought 
-                		while (cartItm != null) {
-                			salesList.addItem(cartItm);
-                			Item inventoryItem = inventory.getItem(cartItm.getBarcode());
-                			inventoryItem.setStock(inventoryItem.getStock() - (cartItm.getQuantity()));
-                			cartItm = cartIter.next();
-                		}
-                    	    
-                		
-                		System.out.println("Inventory updated...LowStock updated...Checkout Completed");
-                		
-                		//save new inventory
-                		save(inventory, saveType.INVENTORY);
-                		
-                		//save cart that was purchased
-                		save(cart, saveType.CUSTOMER);
-                		
-                		//sava low stock file
-                		Container temp = new Container();
-                    	Iterator inventIter = inventory.createIterator();
-                    	while (inventIter.hasNext()) {
-                    		Item stockItem = inventIter.next();
-                    		if (stockItem.isLowStock()) {
-                    			temp.addItem(stockItem);
-                    		}
+            		if(cart.size()>1)
+            		{
+            			//print cart contents that's being checked out, price per item, total price, quantity, and order subtotal
+                    	DecimalFormat df = new DecimalFormat("#.##");
+                    	System.out.println("Items: ");
+                    	cartIter.resetCurr();
+                    	Item cartItm = cartIter.next();
+                    	while (cartItm != null) {
+                    		System.out.println(cartItm.getName() + " - $" + df.format(cartItm.getPrice()) + "/ea - QTY: " + cartItm.getQuantity() + " - TOTAL: $" + df.format(cartItm.getPrice() * cartItm.getQuantity()));
+                    		subtotal += cartItm.getPrice() * cartItm.getQuantity();
+                    		cartItm = cartIter.next();
                     	}
-                    	save(temp, saveType.LOWSTOCK);
-                	}
-                	//if not, remove cart
-                	else if(cf == 'N' || cf == 'n')
-                	{
-                		System.out.println("Cart removed...");
-                	}
+                    	System.out.println("\nSubtotal: $ "+ df.format(subtotal));
+                    	
+                    	//calculate the final price based on the type of customer it was and print type of customer
+                    	System.out.println("Calculating the final price based on customer type:");
+                    	System.out.println("\nCustomer Info: ");
+                    	cust.getType();
+                    	double fp = cust.getPrice(subtotal);
+                    	
+                    	System.out.println("\nFinal price is $"+ df.format(fp) + "\nConfirm Payment? Y - yes, N - No \n");
+                    	
+                    	String cfstring = s.next();
+                    	
+                    	cfstring.toUpperCase();
+                    	char cf = cfstring.charAt(0);
+                    	//finish checkout?, yes
+                    	if(cf == 'Y' || cf == 'y')
+                    	{
+                    		
+                    		cartIter.resetCurr(); //reset cart iterator's index to 0
+                    		cartItm = cartIter.next(); //get first item in cart
+                    		
+                    		//update inventory by subtracting the amount that the customer bought 
+                    		while (cartItm != null) {
+                    			salesList.addItem(cartItm);
+                    			Item inventoryItem = inventory.getItem(cartItm.getBarcode());
+                    			inventoryItem.setStock(inventoryItem.getStock() - (cartItm.getQuantity()));
+                    			cartItm = cartIter.next();
+                    		}
+                        	    
+                    		
+                    		System.out.println("Inventory updated...LowStock updated");
+                    		
+                    		//save new inventory
+                    		save(inventory, saveType.INVENTORY);
+                    		
+                    		//save cart that was purchased
+                    		save(cart, saveType.CUSTOMER);
+                    		
+                    		//sava low stock file
+                    		Container temp = new Container();
+                        	Iterator inventIter = inventory.createIterator();
+                        	while (inventIter.hasNext()) {
+                        		Item stockItem = inventIter.next();
+                        		if (stockItem.isLowStock()) {
+                        			temp.addItem(stockItem);
+                        		}
+                        	}
+                        	save(temp, saveType.LOWSTOCK);
+                    	}
+                    	//if not, remove cart
+                    	else if(cf == 'N' || cf == 'n')
+                    	{
+                    		System.out.println("Cart removed...");
+                    	}
+            		}
+            		else
+            		{
+            			System.out.println("Nothing in cart.. quiting");
+            		}
             	}
             		
             }
