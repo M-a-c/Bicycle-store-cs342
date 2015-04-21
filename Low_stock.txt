@@ -1,9 +1,0 @@
-Name: low
-Number in stock: 3
-********************
-Please order 6
-Sold by: nimnus
-Supplier price: $32.32
-Supplier's ID for item: 09234811
---------------------
-

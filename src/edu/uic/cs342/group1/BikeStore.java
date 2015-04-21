@@ -59,7 +59,7 @@ public class BikeStore {
             {
             	save(inventory, saveType.INVENTORY);
             	//Should ask if they want a print out
-            	System.out.println(" want a print out low invintory? y/n");
+            	System.out.println("Would you like to print out low invintory (to a printer)? y/n");
             	input = takeInput(s);
             	ch = input.charAt(0);
             	if(ch=='y')
@@ -406,7 +406,10 @@ public class BikeStore {
                 			inventoryItem.setStock(inventoryItem.getStock() - (cartItm.getQuantity()));
                 			cartItm = cartIter.next();
                 		}
-                    	    
+                		System.out.println("Print receipt");
+                		if(cf=='Y'||ch=='y'){
+                			cust.printRecipt();
+                		}
                 		
                 		System.out.println("Inventory updated...Checkout Completed");
                 		
@@ -554,7 +557,7 @@ public class BikeStore {
 		}
 	}
 	
-	//save functino to save container
+	//save function to save container
 	public static void save(Container items, saveType typeOfSave) throws IOException{
 		switch (typeOfSave){
 		
@@ -577,12 +580,13 @@ public class BikeStore {
 					 saveCust.write(printStrCust);
 					 
 					 if (tmpCust.getName() == "Bike"){
-						 printStrCust = "\r\nColor: " + ((Bike)tmpCust).getColor() + "\r\nSpeed: " + ((Bike)tmpCust).getSpeed();
+						 printStrCust = "\nColor: " + ((Bike)tmpCust).getColor() + "\nSpeed: " + ((Bike)tmpCust).getSpeed();
 					 saveCust.write(printStrCust);
 					 }
-					printStrCust = "\r\nPrice: $" + tmpCust.getPrice() + 
-				    "\r\nQty: " + tmpCust.getQuantity() + "\r\n\r\n";
+					printStrCust = "\nPrice: $" + tmpCust.getPrice() + 
+				    "\nQty: " + tmpCust.getQuantity() + "\n\n";
 					saveCust.write(printStrCust);
+					saveCust.write(" \n");
 				}
 				saveCust.close();
 				break;
@@ -595,11 +599,12 @@ public class BikeStore {
 				
 				while (stockIter.hasNext()){
 					 tmpStock = (Item)stockIter.next();
-					printStr = "Name: " + tmpStock.getName() + "\r\nNumber in stock: " + tmpStock.getStock() + "\r\n********************" + 
-				    "\r\nPlease order " + tmpStock.getStock() * 2 + "\r\nSold by: " + tmpStock.getSupplierName() + 
-				    "\r\nSupplier price: $" + tmpStock.getSupplierPrice() + "\r\nSupplier's ID for item: " + 
-				    tmpStock.getReorderNumber() + "\r\n--------------------\r\n\r\n";
+					printStr = "Name: " + tmpStock.getName() + "\nNumber in stock: " + tmpStock.getStock() + "\n********************" + 
+				    "\nPlease order " + tmpStock.getStock() * 2 + "\nSold by: " + tmpStock.getSupplierName() + 
+				    "\nSupplier price: $" + tmpStock.getSupplierPrice() + "\nSupplier's ID for item: " + 
+				    tmpStock.getReorderNumber() + "\n--------------------\n";
 					saveStock.write(printStr);
+					saveStock.write(" \n");
 				}
 				saveStock.close();
 				break;

@@ -48,8 +48,6 @@ public class PrintFile {
 	 Book book = new Book();
 
 	 //--- Add the cover page using the default page format for this print
-	 // job
-	 //    book.append(new IntroPage(), printJob.defaultPage());
 
 	 doneSeeking = false;
 	 SeekNumber=0;
@@ -58,15 +56,11 @@ public class PrintFile {
 	 BufferedReader br = new BufferedReader(new FileReader(FileName));
 	 String line;
 	 
-	 
+	 	System.out.println("Now prompting to print the following to a printer.\n");
 	     while((line = br.readLine()) != null){
-	         totalLinesInFile++;
+	    	 System.out.println(line);
+	    	 totalLinesInFile++;
 	     }
-	 
-	 
-	 }catch (Exception e) {
-//	         e.printStackTrace();
-	 }
 	 
 
 	 while (!doneSeeking) {
@@ -95,6 +89,10 @@ public class PrintFile {
 	   finally{
 		   //continues.
 	   }
+	 }
+	 
+	 }catch (Exception e) {
+		 System.out.println("No file found.");
 	 }
 	}
 
@@ -134,88 +132,96 @@ public class PrintFile {
 
 	     public int print(Graphics g, PageFormat pageFormat, int page) {
 
-	       //--- Create the Graphics2D object
-	       Graphics2D g2d = (Graphics2D) g;
+	          //--- Create the Graphics2D object
+	          Graphics2D g2d = (Graphics2D) g;
 
-	       //--- Translate the origin to 0,0 for the top left corner
-	       g2d.translate(pageFormat.getImageableX(), pageFormat
-	           .getImageableY());
+	          //--- Translate the origin to 0,0 for the top left corner
+	          g2d.translate(pageFormat.getImageableX(), pageFormat
+	              .getImageableY());
 
-	       //--- Set the drawing color to black
-	       g2d.setPaint(Color.black);
+	          //--- Set the drawing color to black
+	          g2d.setPaint(Color.black);
 
 
-	       //--- Create a point object to set the top left corner of the
-	       // TextLayout object
-	       Point2D.Double pen = new Point2D.Double(0.25 * POINTS_PER_INCH,
-	           0.25 * POINTS_PER_INCH);
+	          //--- Create a point object to set the top left corner of the
+	          // TextLayout object
+	          Point2D.Double pen = new Point2D.Double(0.25 * POINTS_PER_INCH,
+	              0.25 * POINTS_PER_INCH);
 
-	       //--- Set the width of the TextLayout box
-	       double width = 6 * POINTS_PER_INCH;
+	          //--- Set the width of the TextLayout box
+	          double width = 6 * POINTS_PER_INCH;
 
-	       //--- Create an attributed string from the text string. We are
-	       // creating an
-	       //--- attributed string because the LineBreakMeasurer needs an
-	       // Iterator as
-	       //--- parameter.
-	             lineNumber=0;
-	             try {
-	                  BufferedReader br = new BufferedReader(new FileReader(PrintFile.FileName));
-	                 String line;
-	                 
-	                 while ((line = br.readLine()) != null && (lineNumber!=lowerLimit) ){
-	                     lineNumber++;
-	                 }                    
-	                 
-	                  while ((line = br.readLine()) != null && lineNumber!=upperLimit) {
-	                     lineNumber++;
-	                   //--- Create a string and assign the text
-	                   String text = new String();
-//	                 System.out.println(line);
-	                 //Read in new things add them to text.
-	                 //Run the print call.
-	                 text=line;
-	                   AttributedString paragraphText = new AttributedString(text);
+	          //--- Create an attributed string from the text string. We are
+	          // creating an
+	          //--- attributed string because the LineBreakMeasurer needs an
+	          // Iterator as
+	          //--- parameter.
+	        
+	            //HACK
+	                lineNumber=0;
+	                if (upperLimit==58) {
+	                    upperLimit=59;
+	                }
+	                try {
+	                     BufferedReader br = new BufferedReader(new FileReader(PrintFile.FileName));
+	                    String line;
+	                    
+	                    if (lineNumber!=lowerLimit) {
 
-	                   //--- Set the font for this text
-	                   paragraphText.addAttribute(TextAttribute.FONT, new Font("serif",
-	                       Font.PLAIN, 12));
+	                        while ((line = br.readLine()) != null && (lineNumber!=lowerLimit) ){
+	                            lineNumber++;
+	                        }                    
+	                    }                    
+	                     while ((line = br.readLine()) != null && lineNumber!=upperLimit) {
+	                        lineNumber++;
+	                      //--- Create a string and assign the text
+	                      String text = new String();
+//	                    System.out.println(line);
+	                    //Read in new things add them to text.
+	                    //Run the print call.
+	                    text=line;
+	                      AttributedString paragraphText = new AttributedString(text);
 
-	                   //--- Create a LineBreakMeasurer to wrap the text for the
-	                   // TextLayout object
-	                   //--- Note the second parameter, the FontRendereContext. I have set
-	                   // the second
-	                   //--- parameter antiAlised to true and the third parameter
-	                   // useFractionalMetrics
-	                   //--- to true to get the best possible output
-	                   LineBreakMeasurer lineBreaker = new LineBreakMeasurer(paragraphText
-	                       .getIterator(), new FontRenderContext(null, false, false));
+	                      //--- Set the font for this text
+	                      paragraphText.addAttribute(TextAttribute.FONT, new Font("serif",
+	                          Font.PLAIN, 12));
 
-	                   //--- Create the TextLayout object
-	                   TextLayout layout;
+	                      //--- Create a LineBreakMeasurer to wrap the text for the
+	                      // TextLayout object
+	                      //--- Note the second parameter, the FontRendereContext. I have set
+	                      // the second
+	                      //--- parameter antiAlised to true and the third parameter
+	                      // useFractionalMetrics
+	                      //--- to true to get the best possible output
+	                      LineBreakMeasurer lineBreaker = new LineBreakMeasurer(paragraphText
+	                          .getIterator(), new FontRenderContext(null, false, false));
 
-	                   //--- LineBreakMeasurer will wrap each line to correct length and
-	                   //--- return it as a TextLayout object
-	                   while ((layout = lineBreaker.nextLayout((float) width)) != null) {
+	                      //--- Create the TextLayout object
+	                      TextLayout layout;
 
-	                     //--- Align the Y pen to the ascend of the font, remember that
-	                     //--- the ascend is origin (0, 0) of a font. Refer to figure 1
-	                     pen.y += layout.getAscent();
+	                      //--- LineBreakMeasurer will wrap each line to correct length and
+	                      //--- return it as a TextLayout object
+	                      while ((layout = lineBreaker.nextLayout((float) width)) != null) {
 
-	                     //--- Draw the line of text
-	                     layout.draw(g2d, (float) pen.x, (float) pen.y);
+	                        //--- Align the Y pen to the ascend of the font, remember that
+	                        //--- the ascend is origin (0, 0) of a font. Refer to figure 1
+	                        pen.y += layout.getAscent();
 
-	                     //--- Move the pen to the next position adding the descent and
-	                     //--- the leading of the font
-	                     pen.y += layout.getDescent() + layout.getLeading();
-	                   }
-//	              }
-	         }
-	     }catch (Exception e) {
-//	             e.printStackTrace();
-	     }
-	               //--- Validate the page
-	       return (PAGE_EXISTS);
-	     }
-	}
+	                        //--- Draw the line of text
+	                        layout.draw(g2d, (float) pen.x, (float) pen.y);
+
+	                        //--- Move the pen to the next position adding the descent and
+	                        //--- the leading of the font
+	                        pen.y += layout.getDescent() + layout.getLeading();
+	                      }
+//	                 }
+	            }
+	        }catch (Exception e) {
+	                e.printStackTrace();
+	        }
+	                  //--- Validate the page
+	          return (PAGE_EXISTS);
+	        }
+	  }
+
 	}

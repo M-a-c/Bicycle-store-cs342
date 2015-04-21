@@ -64,9 +64,8 @@ public class Customer {
 		return calcPrice.calculatePrice(subtotal);
 	}
 	
-	public void getPrint(){
-//		p.printCustomer(calcPrice);
-		p.printCustomer(42);
+	public void printRecipt(){
+		p.printRecipt();
 	}
 	
 	// used to retrieve an item, returns item instance
