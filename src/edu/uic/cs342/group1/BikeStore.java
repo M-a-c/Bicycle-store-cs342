@@ -307,12 +307,12 @@ public class BikeStore {
             	Container cart = new Container();
             	Iterator cartIter = cart.createIterator();
             	
-            	System.out.println("Please enter the item barcode you want to add to cart, -1 to finish and proceed to checkout");
+            	System.out.println("Please enter the item barcode you want to add to cart, -1 to quit, -2 to continue check out");
             	
             	//take item name
             	bc = s.next();
             	
-            	while(!bc.equals("-1"))
+            	while(!bc.equals("-2")&& !bc.equals("-1"))
             	{
             		i = inventory.getItem(bc);
             		
@@ -359,7 +359,7 @@ public class BikeStore {
 		        		
             		}
                 	
-                	System.out.println("Please enter the item barcode you want to add to cart -1 to finish and proceed to checkout");
+                	System.out.println("Please enter the item barcode you want to add to cart -1 to quit");
                 	
                 	bc = s.next();
                 	
