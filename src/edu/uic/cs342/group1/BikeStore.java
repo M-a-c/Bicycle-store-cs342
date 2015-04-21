@@ -89,13 +89,13 @@ public class BikeStore {
             	if (type == 1) {
             		System.out.println("Enter Name:");
             		String name = s.next();
-            		System.out.println("Enter Promotional Discount:");
+            		System.out.println("Enter Promotional Discount (EX: 25% is 0.25 ):");
             		double promo = s.nextDouble();
             		System.out.println("Enter Description (new/used):");
             		String description = s.next();
             		System.out.println("Enter Square Footage:");
             		double sqft = s.nextDouble();
-            		System.out.println("Enter Weight:");
+            		System.out.println("Enter Weight (lbs):");
             		double weight = s.nextDouble();
             		System.out.println("Enter Supplier Name:");
             		String supp = s.next();
@@ -242,10 +242,28 @@ public class BikeStore {
             {
             	System.out.print("Please enter item bar code you want to look up: ");
             	
-            	int bc =  s.nextInt();
+            	//int bc =  s.nextInt();
+            	
+                String str = s.next();
+            	
+            	while(!isNumeric(str))
+            	{
+            		System.out.println("You input is not number, please input integer: ");
+            		str = s.next();
+            	}
+            	
+            	int bc = Integer.parseInt(str);
             	//get the item and have it print info
             	i = inventory.getItem(bc);
-            	i.printInfo();
+            	
+            	if(i == null)
+            	{
+            		System.out.println("Item could not find.");
+            	}
+            	else
+            	{
+            		i.printInfo();
+            	}
             }
             
             //choose the type of customer and do checkout
@@ -559,6 +577,20 @@ public class BikeStore {
 				
 			default: break;
 		}
+	
+	}
+	
+	public static boolean isNumeric(String str)  
+	{  
+	  try  
+	  {  
+	    double d = Double.parseDouble(str);  
+	  }  
+	  catch(NumberFormatException nfe)  
+	  {  
+	    return false;  
+	  }  
+	  return true;  
 	}
 
 }
