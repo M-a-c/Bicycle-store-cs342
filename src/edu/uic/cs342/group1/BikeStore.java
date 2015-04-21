@@ -57,19 +57,21 @@ public class BikeStore {
         	// Quits the program -- saves the inventory to file before quitting
         	if(ch == 'q')
             {
-            	System.out.println("Quitting Program");
             	save(inventory, saveType.INVENTORY);
             	//Should ask if they want a print out
             	System.out.println(" want a print out low invintory? y/n");
+            	input = takeInput(s);
+            	ch = input.charAt(0);
             	if(ch=='y')
             	{
             		p.PrintLow();
             	}
             	else{
-            		System.out.println("");
+            		System.out.println("Quitting Program No file printed.");
             	}
-            	
+            	System.out.println("--- Fin ----");
                 s.close();
+                
                 return;
             }
         	
@@ -545,7 +547,7 @@ public class BikeStore {
 		loadCont.close();
 		}
 		catch(Exception e){
-			System.out.println("first time useage, no file found.");
+			System.out.println("File does not exist for the first time users, please save a file.");
 		}
 		finally{
 			return tempCont;

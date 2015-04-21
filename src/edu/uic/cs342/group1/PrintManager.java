@@ -41,7 +41,18 @@ Original credit to
 */
 
 public class PrintManager{
-  
+  public static void printCustomer(int calcPrice){
+	  
+//	       this.currentLineOnPage=0;
+	  PrintFile.FileName = "customer.txt";
+	try{  
+	  PrintFile example = new PrintFile();
+	}
+	catch(Exception e){	
+		System.out.println("no file found for customer");
+	}
+  }
+	
   public static void Print(){
   //     this.currentLineOnPage=0;
 //	  PrintFile.FileName = "test.txt";    
@@ -50,8 +61,8 @@ public class PrintManager{
 
   public static void PrintLow(){
   //  this.currentLineOnPage=0;
-//	  PrintFile.FileName = "test.txt";    
-//	  PrintFile example = new PrintFile();
+	  PrintFile.FileName = "Low_stock.txt";    
+	  PrintFile example = new PrintFile();
   }
 }
 

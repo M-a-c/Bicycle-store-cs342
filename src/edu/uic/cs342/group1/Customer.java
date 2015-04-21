@@ -65,8 +65,8 @@ public class Customer {
 	}
 	
 	public void getPrint(){
-		
-		//p.print(Graphics, PageFormat, calcPrice);
+//		p.printCustomer(calcPrice);
+		p.printCustomer(42);
 	}
 	
 	// used to retrieve an item, returns item instance

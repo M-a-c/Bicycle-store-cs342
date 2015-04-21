@@ -65,7 +65,7 @@ public class PrintFile {
 	 
 	 
 	 }catch (Exception e) {
-	         e.printStackTrace();
+//	         e.printStackTrace();
 	 }
 	 
 
@@ -90,7 +90,10 @@ public class PrintFile {
 	   try {
 	     printJob.print();
 	   } catch (Exception PrintException) {
-	     PrintException.printStackTrace();
+	     //happens sometimes whatever.
+	   }
+	   finally{
+		   //continues.
 	   }
 	 }
 	}
@@ -209,7 +212,7 @@ public class PrintFile {
 //	              }
 	         }
 	     }catch (Exception e) {
-	             e.printStackTrace();
+//	             e.printStackTrace();
 	     }
 	               //--- Validate the page
 	       return (PAGE_EXISTS);
