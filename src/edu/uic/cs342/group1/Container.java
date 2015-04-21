@@ -23,9 +23,9 @@ public class Container implements Aggregate, Serializable {
 		list.add(itm);
 	}
 	//get an item given its barcode, if found return Item else return null
-	public Item getItem(int bc) {
+	public Item getItem(String bc) {
 		for (Item i : list) {
-			if (i.getBarcode() == bc) {
+			if (i.getBarcode().equals(bc)) {
 				return i;
 			}
 		}

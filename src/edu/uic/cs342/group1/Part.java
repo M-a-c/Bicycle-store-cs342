@@ -33,7 +33,7 @@ public class Part extends Item implements Serializable {
 	}
 																														//added
 	public Part(String name, double price, double promotion, String description, double sqftOccupied, double weight, String supplierName, 
-			    double supplierPrice, String reorderNumber, int barcode, int stock, double bulkPrice, int q){
+			    double supplierPrice, String reorderNumber, String barcode, int stock, double bulkPrice, int q){
 		super(name, price, promotion, description, sqftOccupied, weight, supplierName, supplierPrice, reorderNumber, barcode, stock, q);
 
 		this.bulkPrice = bulkPrice;

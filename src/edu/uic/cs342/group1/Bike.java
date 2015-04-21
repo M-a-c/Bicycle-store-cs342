@@ -30,7 +30,7 @@ public class Bike extends Item implements Serializable{
 		this.color="";
 	}																												//added
 	public Bike(String name,double price,double promotion,String description,double sqftOccupied,double weight,String supplierName, 
-			    double supplierPrice,String reorderNumber,int barcode,int stock,String type,int speed,String color, int q) {
+			    double supplierPrice,String reorderNumber,String barcode,int stock,String type,int speed,String color, int q) {
 		super(name,price,promotion,description,sqftOccupied,weight,supplierName, supplierPrice,reorderNumber,barcode,stock, q);
 		this.type=type;
 		this.speed=speed;

@@ -104,7 +104,7 @@ public class BikeStore {
             		System.out.println("Enter reorder #:");
             		String ron = s.next();
             		System.out.println("Enter barcode #");
-            		int bc = s.nextInt();
+            		String bc = s.next();
             		System.out.println("Enter quantity on hand:");
             		int qty = s.nextInt();
             		
@@ -180,7 +180,7 @@ public class BikeStore {
             	else if (type == 2) {
             		//get barcode for item we want to change stock of, and get item
             		System.out.println("Enter barcode of item you want to restock");
-            		int bc = s.nextInt();
+            		String bc = s.next();
             		//get item in inventory and purchase list
             		Item restockItem = inventory.getItem(bc);
             		Item updatePurchaseListItem = purchaseList.getItem(bc);
@@ -199,7 +199,7 @@ public class BikeStore {
             	else if (type == 3) {
             		//get barcode if item being removed
             		System.out.println("Enter barcode of item you want to remove");
-            		int bc = s.nextInt();
+            		String bc = s.next();
             		//find the item and then remove from list, returns true if removed
             		if(inventoryIter.remove(inventory.getItem(bc))) {
             			System.out.println("Item removed");
@@ -244,15 +244,15 @@ public class BikeStore {
             	
             	//int bc =  s.nextInt();
             	
-                String str = s.next();
+                String bc = s.next();
             	
-            	while(!isNumeric(str))
-            	{
-            		System.out.println("You input is not number, please input integer: ");
-            		str = s.next();
-            	}
+//            	while(!isNumeric(str))
+//            	{
+//            		System.out.println("You input is not number, please input integer: ");
+//            		str = s.next();
+//            	}
             	
-            	int bc = Integer.parseInt(str);
+//            	int bc = Integer.parseInt(str);
             	//get the item and have it print info
             	i = inventory.getItem(bc);
             	
@@ -282,7 +282,7 @@ public class BikeStore {
             	cust.setPricing(type);
             	
             	//item barcode
-            	int bc;
+            	String bc;
             	double subtotal = 0.0;
             	
             	// Create new cart and its iterator
@@ -292,9 +292,9 @@ public class BikeStore {
             	System.out.println("Please enter the item barcode you want to add to cart, -1 to finish and proceed to checkout");
             	
             	//take item name
-            	bc = s.nextInt();
+            	bc = s.next();
             	
-            	while(bc != -1)
+            	while(bc != "")
             	{
             		i = inventory.getItem(bc);
             		
@@ -343,7 +343,7 @@ public class BikeStore {
                 	
                 	System.out.println("Please enter the item barcode you want to add to cart -1 to finish and proceed to checkout");
                 	
-                	bc = s.nextInt();
+                	bc = s.next();
                 	
                 }
             	//print cart contents that's being checked out, price per item, total price, quantity, and order subtotal
