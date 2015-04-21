@@ -408,13 +408,24 @@ public class BikeStore {
                 		}
                     	    
                 		
-                		System.out.println("Inventory updated...Checkout Completed");
+                		System.out.println("Inventory updated...LowStock updated...Checkout Completed");
                 		
                 		//save new inventory
                 		save(inventory, saveType.INVENTORY);
                 		
                 		//save cart that was purchased
                 		save(cart, saveType.CUSTOMER);
+                		
+                		//sava low stock file
+                		Container temp = new Container();
+                    	Iterator inventIter = inventory.createIterator();
+                    	while (inventIter.hasNext()) {
+                    		Item stockItem = inventIter.next();
+                    		if (stockItem.isLowStock()) {
+                    			temp.addItem(stockItem);
+                    		}
+                    	}
+                    	save(temp, saveType.LOWSTOCK);
                 	}
                 	//if not, remove cart
                 	else if(cf == 'N' || cf == 'n')
