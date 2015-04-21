@@ -435,7 +435,13 @@ public class BikeStore {
             			temp.addItem(stockItem);
             			stockItem.printInfo();
             		}
+            		
             	}
+            	
+            	if(temp.size() ==0)
+        		{
+        			System.out.println("No item low stock.");
+        		}
             	save(temp, saveType.LOWSTOCK);
 
             }
