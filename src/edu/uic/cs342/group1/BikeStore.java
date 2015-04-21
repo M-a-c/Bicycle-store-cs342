@@ -309,7 +309,7 @@ public class BikeStore {
             	Container cart = new Container();
             	Iterator cartIter = cart.createIterator();
             	
-            	System.out.println("Please enter the item barcode you want to add to cart, -1 to quit, -2 to continue check out");
+            	System.out.println("Please enter the item barcode you want to add to cart, -1 to continue check out, -2 to quit");
             	
             	//take item name
             	bc = s.next();
@@ -361,12 +361,12 @@ public class BikeStore {
 		        		
             		}
                 	
-                	System.out.println("Please enter the item barcode you want to add to cart -1 to quit");
+                	System.out.println("Please enter the item barcode you want to add to cart -1 continue check out, -2 to quit");
                 	
                 	bc = s.next();
                 	
                 }
-            	if(!bc.equals("-1"))
+            	if(!bc.equals("-2"))
             	{
             		//print cart contents that's being checked out, price per item, total price, quantity, and order subtotal
                 	DecimalFormat df = new DecimalFormat("#.##");
