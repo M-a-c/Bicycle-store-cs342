@@ -17,13 +17,13 @@ public class Item implements Serializable{
 	private String supplierName;
 	private double supplierPrice;
 	private String reorderNumber;
-	private int barcode;
+	private String barcode;
 	private int stock;
 	private int quantity;
 	
 	//constructor																								
 	public Item(String name,double price,double promotion,String description,double sqftOccupied,double weight,String supplierName, 
-			    double supplierPrice, String reorderNumber,int barcode,int stock, int q){
+			    double supplierPrice, String reorderNumber,String barcode,int stock, int q){
 		this.name = name;
 		this.price = price;
 		this.promotion = promotion;
@@ -49,7 +49,7 @@ public class Item implements Serializable{
 		this.supplierName = "";
 		this.supplierPrice = 0;
 		this.reorderNumber = "";
-		this.barcode = 0;
+		this.barcode = "";
 		this.stock = 0;
 		this.quantity = 0;
 	}
@@ -132,10 +132,10 @@ public class Item implements Serializable{
 	public void setReorderNumber(String reorderNumber) {
 		this.reorderNumber = reorderNumber;
 	}
-	public int getBarcode() {
+	public String getBarcode() {
 		return barcode;
 	}
-	public void setBarcode(int barcode) {
+	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
 	public int getStock() {
