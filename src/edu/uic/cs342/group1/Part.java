@@ -21,7 +21,7 @@ public class Part extends Item implements Serializable {
 	}
 	
 	public void printInfo() {
-		System.out.println("PART");
+		System.out.println("\nPART");
 		super.printInfo();
 		System.out.println("Bulk Price: " + this.bulkPrice);
 	}

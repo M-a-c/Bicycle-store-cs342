@@ -9,7 +9,7 @@ public class Bike extends Item implements Serializable{
 
 
 	public void printInfo() {
-		System.out.println("BIKE");
+		System.out.println("\nBIKE");
 		super.printInfo();
 		System.out.println("Type: " + this.type);
 		System.out.println("Speed: " + this.speed);
