@@ -493,11 +493,18 @@ public class BikeStore {
 	
 	public static Container load() throws IOException, ClassNotFoundException{
 		Container tempCont = new Container();
+		try{
 		FileInputStream loadFile = new FileInputStream("Inventory.sav");
 		ObjectInputStream loadCont = new ObjectInputStream(loadFile);
 		tempCont = (Container) loadCont.readObject();
 		loadCont.close();
-		return tempCont;
+		}
+		catch(Exception e){
+			System.out.println("first time useage, no file found.");
+		}
+		finally{
+			return tempCont;
+		}
 	}
 	
 	//save functino to save container
