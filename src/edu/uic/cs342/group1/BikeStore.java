@@ -424,8 +424,8 @@ public class BikeStore {
                     		//update inventory by subtracting the amount that the customer bought 
                     		while (cartItm != null) {
                     			salesList.addItem(cartItm);
-                    			Item inventoryItem = inventory.getItem(cartItm.getBarcode());
-                    			inventoryItem.setStock(inventoryItem.getStock() - (cartItm.getQuantity()));
+                    			//Item inventoryItem = inventory.getItem(cartItm.getBarcode());
+                    			//inventoryItem.setStock(inventoryItem.getStock() - (cartItm.getQuantity()));
                     			cartItm = cartIter.next();
                     		}
                         	    
