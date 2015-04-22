@@ -59,6 +59,19 @@ public class BikeStore {
             {
             	save(inventory, saveType.INVENTORY);
             	//Should ask if they want a print out
+            	
+            	int lowStockValue = 0;
+            	Container temp = new Container();
+            	Iterator inventIter3 = inventory.createIterator();
+            	while (inventIter3.hasNext()) {
+            		Item stockItem = inventIter3.next();
+            		if (stockItem.isLowStock()) {
+            			lowStockValue++;
+            			temp.addItem(stockItem);
+            		}
+            	}
+            	
+            	if(lowStockValue>0){
             	System.out.println("Would you like to print out low invintory (to a printer)? y/n");
             	input = takeInput(s);
             	ch = input.charAt(0);
@@ -69,7 +82,9 @@ public class BikeStore {
             	else{
             		System.out.println("Quitting Program No file printed.");
             	}
-            	System.out.println("--- Fin ----");
+            	}
+            	
+            	System.out.println("--- Good Bye ----");
                 s.close();
                 
                 return;
