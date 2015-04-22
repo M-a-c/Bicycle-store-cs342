@@ -281,16 +281,6 @@ public class BikeStore {
             	
             	//save file at the begining
           
-            	//save inventory
-            	
-            	Container TempIN = new Container();
-            	Iterator inventIter2 = inventory.createIterator();
-            	while (inventIter2.hasNext()) {
-            		Item stockItem = inventIter2.next();
-            		
-            	    TempIN.addItem(stockItem);
-            	
-            	}
         		
             	//customer type
             	int type = 1;
@@ -367,11 +357,7 @@ public class BikeStore {
 		                	//change quantity and stock elements to amount customer wants
 		                	checkOutItem.setQuantity(amount);
 		                	checkOutItem.setStock(amount);
-		                	
-		                	//save new inventory
-                    		save(inventory, saveType.INVENTORY);
-                    		
-                    		inventory = load();
+		                
                     		
 		                	//add this item into cart
 		                	cart.addItem(checkOutItem);
@@ -388,7 +374,7 @@ public class BikeStore {
             	if(!bc.equals("-2"))
             	{
 
-            		if(cart.size()>1)
+            		if(cart.size()>-1)
             		{
             			//print cart contents that's being checked out, price per item, total price, quantity, and order subtotal
                     	DecimalFormat df = new DecimalFormat("#.##");
@@ -424,8 +410,8 @@ public class BikeStore {
                     		//update inventory by subtracting the amount that the customer bought 
                     		while (cartItm != null) {
                     			salesList.addItem(cartItm);
-                    			//Item inventoryItem = inventory.getItem(cartItm.getBarcode());
-                    			//inventoryItem.setStock(inventoryItem.getStock() - (cartItm.getQuantity()));
+                    			Item inventoryItem = inventory.getItem(cartItm.getBarcode());
+                    			inventoryItem.setStock(inventoryItem.getStock() - (cartItm.getQuantity()));
                     			cartItm = cartIter.next();
                     		}
                         	    
@@ -465,11 +451,6 @@ public class BikeStore {
                     	{
                     		System.out.println("Cart removed...");
                     		
-                    		//resave all
-                 
-                    		save(TempIN, saveType.INVENTORY);
-                    		
-                    		inventory = load();
                     		
                     	}
             		}

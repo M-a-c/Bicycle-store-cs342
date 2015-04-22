@@ -1,8 +1,4 @@
 Name: new
 Price: $39.66
-Qty: 4
- 
-Name: new
-Price: $39.66
-Qty: 3
+Qty: 10
  
