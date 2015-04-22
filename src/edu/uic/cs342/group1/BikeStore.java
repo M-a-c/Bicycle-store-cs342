@@ -196,7 +196,7 @@ public class BikeStore {
             			System.out.println("Enter how many new units to add to stock:");
             			int newStock = s.nextInt();
             			restockItem.setStock(restockItem.getStock() + newStock);
-            			updatePurchaseListItem.setStock(updatePurchaseListItem.getStock() + newStock);
+//            			updatePurchaseListItem.setStock(updatePurchaseListItem.getStock() + newStock);
             		}
             	}
             	else if (type == 3) {
@@ -438,6 +438,17 @@ public class BikeStore {
                     		//save cart that was purchased
                     		save(cart, saveType.CUSTOMER);
                     		
+                    		
+                    		System.out.println("Would you like to print a Recept?");
+                    		cfstring = s.next();
+                        	
+                        	cfstring.toUpperCase();
+                        	cf = cfstring.charAt(0);
+                    		if(cf == 'Y' || cf == 'y')
+                        	{
+                    			cust.printRecipt();
+                        	}
+                    		
                     		//save low stock file
                     		Container temp = new Container();
                         	Iterator inventIter3 = inventory.createIterator();
@@ -626,7 +637,7 @@ public class BikeStore {
 					 saveCust.write(printStrCust);
 					 }
 					printStrCust = "\nPrice: $" + tmpCust.getPrice() + 
-				    "\nQty: " + tmpCust.getQuantity() + "\n\n";
+				    "\nQty: " + tmpCust.getQuantity() + "\n";
 					saveCust.write(printStrCust);
 					saveCust.write(" \n");
 				}
