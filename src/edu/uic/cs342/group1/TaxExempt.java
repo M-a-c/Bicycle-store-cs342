@@ -9,7 +9,7 @@ public class TaxExempt implements FinalPrice {
 	
 	//print discount + tax info
 	public void getInfo() {
-		System.out.println("Type: Tax Exempt - Discount: 0% - Tax: 0%");
+		System.out.println("Type: Tax Exempt - Discount: 0% - Tax: 0% Tax exempt do not get discounts.");
 	}
 
 }

@@ -2,6 +2,8 @@ package edu.uic.cs342.group1;
 import java.util.*;
 
 public class Customer {
+	public static double TOTAL;
+	public static double SUBTOTAL;
 	
 	Random r = new Random();
 	private int id;

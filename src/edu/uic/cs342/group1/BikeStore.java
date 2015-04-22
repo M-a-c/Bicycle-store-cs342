@@ -410,6 +410,8 @@ public class BikeStore {
                     	double fp = cust.getPrice(subtotal);
                     	
                     	System.out.println("\nFinal price is $"+ df.format(fp) + "\nConfirm Payment? Y - yes, N - No \n");
+                    	Customer.TOTAL = fp; 
+                    	Customer.SUBTOTAL = subtotal;
                     	
                     	String cfstring = s.next();
                     	
@@ -440,7 +442,7 @@ public class BikeStore {
                     		save(cart, saveType.CUSTOMER);
                     		
                     		
-                    		System.out.println("Would you like to print a Recept?");
+                    		System.out.println("Would you like to print a Recept? Y - yes, N - No ");
                     		cfstring = s.next();
                         	
                         	cfstring.toUpperCase();
@@ -637,6 +639,10 @@ public class BikeStore {
 					saveCust.write(printStrCust);
 					saveCust.write(" \n");
 				}
+				DecimalFormat df = new DecimalFormat("#.##"); 
+				saveCust.write("SubTotal: $"+df.format(Customer.SUBTOTAL));				
+				saveCust.write("\n TOTAL: $"+df.format(Customer.TOTAL));
+				saveCust.write(" \n");
 				saveCust.close();
 				break;
 				
