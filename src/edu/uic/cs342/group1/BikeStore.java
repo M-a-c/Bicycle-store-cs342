@@ -1,3 +1,12 @@
+/**************************************************************************/
+/**																		 **/
+/**						    Simple Bicycle Store					     **/
+/**							      Group #1							     **/
+/**				   	     Project Lead: Bunty Patel					     **/
+/**  Members: Mac Carter, Arkadiusz Pamula, Brad Cortright, Guiquan Liu  **/
+/**																	     **/
+/**																		 **/
+/**************************************************************************/
 package edu.uic.cs342.group1;
 
 import java.io.FileInputStream;
@@ -36,7 +45,7 @@ public class BikeStore {
         Item i;
 	    String input;
 		
-	    System.out.print("Simple Bicyle Store\n"
+	    System.out.print("Simple Bicycle Store\n"
 		    	+ "Group #1 \n\n"
 		    	+ "Project Lead: Bunty Patel\n"
 		    	+ "Member: Mac Carter, Arkadiusz Pamula, Brad Cortright, Guiquan Liu\n");
